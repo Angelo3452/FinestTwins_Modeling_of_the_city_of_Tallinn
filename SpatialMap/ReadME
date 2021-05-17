@@ -10,6 +10,6 @@
   5. Attendance at 614: Number of students residing in each cell and attending either basic or upper education in 614
   6. Attendance at 574: Number of students residing in each cell and attending either basic or upper education in 574
   7. Workplaces - Lasnamäe and Põhja examples: Number of people residing in Haabersti and working in Lasnamäe (cell resolution) or people residing in Nõmme and working in
-  Põhja-Tallinna (cell resolution). The two maps can be switched by selecting the right variable to be plotted, either Lasn-Haarb or Poh-Nomme. These maps are output examples, 
-  other can be drawn from the original dataset
+  Põhja-Tallinna (cell resolution). The two maps can be switched by selecting the right variable to be plotted, either Lasn-Haarb or Poh-Nomme. These maps are output 
+  examples, other can be drawn from the original dataset
   8. Residents and their workplaces: Number of people working in each district, by district of residence.
