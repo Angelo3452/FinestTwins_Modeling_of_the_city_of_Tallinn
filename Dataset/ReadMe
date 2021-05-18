@@ -1,1 +1,33 @@
-############# Write here the various variables, legends and meanings
+############# Tallinn Synthetic Population (2015)
+In this folder, the dataset containing the synthetic population is uploaded and can be downloaded as Tallinn_Synthetic_Population_2015.csv
+It includes 23 variables for each individual within the population:
+- District: the district of residence; 1_Lasnamäe, 2_Mustamäe, 3_Põhja-Tallinna, 4_Nõmme, 5_Sitsi, 6_Pirita, 7_Kesklinna, 8_Haabersti
+- Household_id: Identifier for each household within the synthetic population
+- Household_Size: Number of individual in the household
+- Gender: 1_Female, 2_Male
+- Age_Int: Age intervals
+- Head_of_the_household
+- ID: Unique identifier for the individual
+- Subdistrict: Subdistrict of residence
+- IFM: Income per family member, 4 qualitative levels to ensure anonymity
+- BLicense: 1_Owned, 0_NotOwned
+- CarOwnership: Number of private vehicles owned within the household
+- ALicense: 1_Owned, 0_NotOwned
+- MotoOwnership: Number of motorcycles owned within the household
+- C.DLicense: 1_Owned, 0_NotOwned
+- BikeOwn: Number of bicycles owned within the household
+- RCell: Cell of residence, please refer to .SpatialMap/Tallinn.gpkg/Grid Land Use for the numbering 
+- KDist: District of enrollment for kindergartens
+- SchDist: District of enrollment for basic and upper education
+- SchCell: Cell of enrollment for basic and upper education, please refer to .SpatialMap/Tallinn.gpkg/Grid Land Use for the numbering 
+- Occupation: Kind of work as per EA classification
+- EMTAK: Field of work as per EMTAK classification
+- WorkDist: District in which the workplace is located
+- WCell: Cell of work, please refer to .SpatialMap/Tallinn.gpkg/Grid Land Use for the numbering
+
+In this folder, some snapshots of relevant distributions within the dataset are reported as well.
+- SubdistrictPop: Number of residents in each subdistrict, both in the synthetic population and from the 
+Statistical Yearbook of Tallinn (https://www.tallinn.ee/eng/Statistics-and-yearbooks)
+- HHSizexDistrict: Number of individuals for each household size, residing in Tallinn districts, in the synthetic population and from the Statistical Yearbook of Tallinn
+- OccupationxDistrict: Distribution of the various occupations in each district, both in the synthetic population and from the census
+- OccupaionxAge: Distribution of the various occupations for each age interval, both in the synthetic population and from the census
