@@ -1,0 +1,93 @@
+---
+title: "Residence Cell Assignment - Tallinn"
+source: "FinestTwins Project - Serio Agriesti, Aalto University, Fi"
+---
+
+
+```{r}
+GridUpload[,"SubDist_Total"]<-NA    ########## Num of people residing in each SubDist
+GridUpload[,"Cells_in_SubDist"]<-NA       ########## Num of cells within each SubDist
+GridUpload[,"SumResWeight"]<-NA           ########## Sum of all the residential weights, through all the cells in the SubDist
+GridUpload[,"ControlVar"]<-"TBD"          ########## Control Variable
+GridUpload[,"PopShare"]<-NA               ########## Ratio of weight of the cell by the summ of all the residential weights
+GridUpload[,"NumofResidents"]<-NA         ########## Num of residing individuals within the cell
+
+for(i in 1:nrow(GridUpload)){
+	for(t in 1:nrow(Subdistricts2015)){
+		if(GridUpload[i, "Subdistrict"]==Subdistricts2015[t,"Subdistrict"]){
+			GridUpload[i,"SubDist_Total"]=Subdistricts2015[t,"Pop"]}}}
+
+####Dividing the total population for each cell based on the weight
+##First define how many cells there are for a subdistrict
+GridUpload <- GridUpload[order(GridUpload$Subdistrict),]
+for(l in 1:nrow(GridUpload)){
+	if(GridUpload[l,"ControlVar"]=="TBD"){
+		d = 0  ###Number of cells in the subdistrict at hand
+		p = 0  
+		sum = 0 ### Total residential weight in the subdistrict at hand
+		sumOff = 0 ### Total offices and services weight in the subdistrict at hand
+		sumFac = 0 ### Total manufacturing weight in the subdistrict at hand
+		n = 0
+		while(GridUpload[l, "Subdistrict"] == GridUpload[l+d, "Subdistrict"]){
+		  if(l+d<616){ ### 616 being the total number of cells eligible for residence
+			  d = d+1}else{break}} ###Find how many cells in a subdistrict
+		while(p < d){
+			sum = sum+GridUpload[l+p, "Weight...Residential"]
+			p = p+1} ###Find what is the total of the weights in the subdistricts
+		while(n < d){
+			GridUpload[l+n,"Cells_in_SubDist"] = d
+			GridUpload[l+n,"SumResWeight"]=sum
+			GridUpload[l+n,"ControlVar"]="Good"
+			n = n+1}}} ### Assign how many cells and the weights total to all the cells in the subdistrict
+
+for(y in 1:nrow(GridUpload)){
+	GridUpload[y,"PopShare"]=GridUpload[y,"Weight...Residential"]/GridUpload[y,"SumResWeight"] ###Percentage of the residing population
+	GridUpload[y,"NumofResidents"]=GridUpload[y,"NumofResidents"]*GridUpload[y,"SubDist_Total"] ###Residing population in each cells
+	}
+
+Head<-subset(Synthetic, Synthetic$Head1=="Head")
+listsubs<-vector(mode = "list")
+
+
+Priisle<-data.frame()
+Priisle<-subset(Head, Head$Subdistrict=="Priisle",
+select=c(Household_id, HouseholdSize))
+Subset<-subset(GridUpload, GridUpload$Subdistrict=="Priisle", select=c(id, PopShare))
+Subset<-t(Subset)
+for(w in 1:nrow(Priisle)){
+  Priisle[w,"Cell"]<-sample(Subset[1,], size=1,prob=c(Subset[2,]))
+}
+listsubs[length(listsubs)+1]<-"Priisle"
+
+Kuristiku<-data.frame()
+Kuristiku<-subset(Head, Head$Subdistrict=="Kuristiku",
+select=c(Household_id, HouseholdSize))
+
+Subset<-subset(GridUpload, GridUpload$Subdistrict=="Kuristiku", select=c(id, PopShare))
+Subset<-t(Subset)
+for(w in 1:nrow(Kuristiku)){
+  Kuristiku[w,"Cell"]<-sample(Subset[1,], size=1,prob=c(Subset[2,]))
+}
+listsubs[length(listsubs)+1]<-"Kuristiku"
+
+Sitsi<-data.frame()
+Sitsi<-subset(Head, Head$Subdistrict=="Sitsi",
+select=c(Household_id, HouseholdSize))
+
+Subset<-subset(GridUpload, GridUpload$Subdistrict=="Sitsi", select=c(id, PopShare))
+Subset<-t(Subset)
+for(w in 1:nrow(Sitsi)){
+  Sitsi[w,"Cell"]<-sample(Subset[1,], size=1,prob=c(Subset[2,]))
+}
+listsubs[length(listsubs)+1]<-"Sitsi"
+########################################################################################################
+Overall_1<-get(listsubs[[1]])
+for(i in 1:length(listsubs)){
+  Overall_1<-rbind(Overall_1,get(listsubs[[i]]))
+}
+Overall_1$HouseholdSize<-NULL
+Synthetic<-merge.data.frame(Synthetic, Overall_1, all.x = TRUE)
+
+```
+
+
