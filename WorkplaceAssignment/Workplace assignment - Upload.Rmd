@@ -153,7 +153,7 @@ for(i in 1:nrow(SyntheticPop)){
     }
   }}
 
-###Assigning weights to each cell, depending on the class as in the methodology by Jimi Oke et al. 
+###Assigning weights to each cell, depending on the class as in the methodology by Jimi Oke et al. (Evaluating the systemic effects of automated on-demand services via large-scale agent-based simulation of auto-dependent prototype cities)
 DistanceMatrix<-Distance.District
 DistanceMatrix$WEIGHT<-as.numeric(NA)
 for(i in 1:nrow(DistanceMatrix)){
@@ -267,9 +267,7 @@ for(i in 1:nrow(CellDist6)){if(is.na(CellDist6[i,"Pc"])==TRUE){CellDist6[i,"Pc"]
 for(i in 1:nrow(CellDist7)){if(is.na(CellDist7[i,"Pc"])==TRUE){CellDist7[i,"Pc"]<-0}}
 for(i in 1:nrow(CellDist8)){if(is.na(CellDist8[i,"Pc"])==TRUE){CellDist8[i,"Pc"]<-0}}
 
-
 #Assigning the cells depending on the district of work, as calculated above, and the weights of the single cells
-#No last mile gravitational model, because it may be challenging to calculate also the prob based on distance from each cell of residence to each cell of work --> possibly integrated later --> Here I may want to keep the prob tied only to the cell weight though, since it is already disaggregated per EMTAK field, adding the probs related to the distance adds noise to the model of Jimi Oke et. al --> actually also this is probably solved afterwards
 
 SyntheticPop$WCell<-NA
 for(i in 1:nrow(CellDist1)){
