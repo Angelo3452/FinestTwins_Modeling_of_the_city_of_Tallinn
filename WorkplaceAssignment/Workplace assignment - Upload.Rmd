@@ -1,0 +1,1259 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+
+
+
+```{r}
+###Compute the average distance between each single cell and the eight districts, as average between the distances to each one of the cells for each district
+
+###This step is probably the one that takes the longest (around 100 minutes), since around 379000 distances have to be averaged over each district and cell. Thus, the example comes with pre-computed values of one, two, three, four, five, six, seven and eight. These can be re-computed by simply launching this part of the code (the same result should be achieved), if this part is skipped instead, the rest of the code will still work.
+Distance.District$Control<-"TBD"
+Distance.District$one<-as.numeric(NA)
+Distance.District$two<-NA
+Distance.District$three<-NA
+Distance.District$four<-NA
+Distance.District$five<-NA
+Distance.District$six<-NA
+Distance.District$seven<-NA
+Distance.District$eight<-NA
+
+
+for(i in 1:nrow(Distance.District)){
+  AVGList<-read.csv(text="col1")
+  if(Distance.District[i,"Control"]=="TBD"){
+    ID = Distance.District[i,"InputID"]
+    n <- which(Distance.District$Destinat_1 == 1 & Distance.District$InputID == ID)
+    for(t in 1:length(n)){
+        AVGList[nrow(AVGList)+1,1]<-Distance.District[n[t],"Distance"]}
+    AVG<-mean(AVGList[,1])
+    n <- which(Distance.District$InputID == ID)
+    for(l in 1:length(n)){
+      Distance.District[n[l],"one"]<-AVG
+      Distance.District[n[l], "Control"]<-"Good"}}}
+    
+
+Distance.District$Control<-"TBD"
+for(i in 1:nrow(Distance.District)){
+  AVGList<-read.csv(text="col1")
+  if(Distance.District[i,"Control"]=="TBD"){
+    ID = Distance.District[i,"InputID"]
+    n <- which(Distance.District$Destinat_1 == 2 & Distance.District$InputID == ID)
+    for(t in 1:length(n)){
+        AVGList[nrow(AVGList)+1,1]<-Distance.District[n[t],"Distance"]}
+    AVG<-mean(AVGList[,1])
+    n <- which(Distance.District$InputID == ID)
+    for(l in 1:length(n)){
+      Distance.District[n[l],"two"]<-AVG
+      Distance.District[n[l], "Control"]<-"Good"}}}
+
+Distance.District$Control<-"TBD"
+for(i in 1:nrow(Distance.District)){
+  AVGList<-read.csv(text="col1")
+  if(Distance.District[i,"Control"]=="TBD"){
+    ID = Distance.District[i,"InputID"]
+    n <- which(Distance.District$Destinat_1 == 3 & Distance.District$InputID == ID)
+    for(t in 1:length(n)){
+        AVGList[nrow(AVGList)+1,1]<-Distance.District[n[t],"Distance"]}
+    AVG<-mean(AVGList[,1])
+    n <- which(Distance.District$InputID == ID)
+    for(l in 1:length(n)){
+      Distance.District[n[l],"three"]<-AVG
+      Distance.District[n[l], "Control"]<-"Good"}}}
+
+Distance.District$Control<-"TBD"
+for(i in 1:nrow(Distance.District)){
+  AVGList<-read.csv(text="col1")
+  if(Distance.District[i,"Control"]=="TBD"){
+    ID = Distance.District[i,"InputID"]
+    n <- which(Distance.District$Destinat_1 == 4 & Distance.District$InputID == ID)
+    for(t in 1:length(n)){
+        AVGList[nrow(AVGList)+1,1]<-Distance.District[n[t],"Distance"]}
+    AVG<-mean(AVGList[,1])
+    n <- which(Distance.District$InputID == ID)
+    for(l in 1:length(n)){
+      Distance.District[n[l],"four"]<-AVG
+      Distance.District[n[l], "Control"]<-"Good"}}}
+
+Distance.District$Control<-"TBD"
+for(i in 1:nrow(Distance.District)){
+  AVGList<-read.csv(text="col1")
+  if(Distance.District[i,"Control"]=="TBD"){
+    ID = Distance.District[i,"InputID"]
+    n <- which(Distance.District$Destinat_1 == 5 & Distance.District$InputID == ID)
+    for(t in 1:length(n)){
+        AVGList[nrow(AVGList)+1,1]<-Distance.District[n[t],"Distance"]}
+    AVG<-mean(AVGList[,1])
+    n <- which(Distance.District$InputID == ID)
+    for(l in 1:length(n)){
+      Distance.District[n[l],"five"]<-AVG
+      Distance.District[n[l], "Control"]<-"Good"}}}
+
+Distance.District$Control<-"TBD"
+for(i in 1:nrow(Distance.District)){
+  AVGList<-read.csv(text="col1")
+  if(Distance.District[i,"Control"]=="TBD"){
+    ID = Distance.District[i,"InputID"]
+    n <- which(Distance.District$Destinat_1 == 6 & Distance.District$InputID == ID)
+    for(t in 1:length(n)){
+        AVGList[nrow(AVGList)+1,1]<-Distance.District[n[t],"Distance"]}
+    AVG<-mean(AVGList[,1])
+    n <- which(Distance.District$InputID == ID)
+    for(l in 1:length(n)){
+      Distance.District[n[l],"six"]<-AVG
+      Distance.District[n[l], "Control"]<-"Good"}}}
+
+Distance.District$Control<-"TBD"
+for(i in 1:nrow(Distance.District)){
+  AVGList<-read.csv(text="col1")
+  if(Distance.District[i,"Control"]=="TBD"){
+    ID = Distance.District[i,"InputID"]
+    n <- which(Distance.District$Destinat_1 == 7 & Distance.District$InputID == ID)
+    for(t in 1:length(n)){
+        AVGList[nrow(AVGList)+1,1]<-Distance.District[n[t],"Distance"]}
+    AVG<-mean(AVGList[,1])
+    n <- which(Distance.District$InputID == ID)
+    for(l in 1:length(n)){
+      Distance.District[n[l],"seven"]<-AVG
+      Distance.District[n[l], "Control"]<-"Good"}}}
+
+Distance.District$Control<-"TBD"
+for(i in 1:nrow(Distance.District)){
+  AVGList<-read.csv(text="col1")
+  if(Distance.District[i,"Control"]=="TBD"){
+    ID = Distance.District[i,"InputID"]
+    n <- which(Distance.District$Destinat_1 == 8 & Distance.District$InputID == ID)
+    for(t in 1:length(n)){
+        AVGList[nrow(AVGList)+1,1]<-Distance.District[n[t],"Distance"]}
+    AVG<-mean(AVGList[,1])
+    n <- which(Distance.District$InputID == ID)
+    for(l in 1:length(n)){
+      Distance.District[n[l],"eight"]<-AVG
+      Distance.District[n[l], "Control"]<-"Good"}}}
+
+
+```
+
+
+```{r}
+### Addition of the district of work based on the occupation activity, for the categories that match between EMTAK and stat.ee
+
+SyntheticPop$WorkDist<-NA
+listWorkDist<-list()
+listWorkDist<-colnames(Emtak.x.Dist_Red)
+listWorkDist<-as.list(listWorkDist)
+listWorkDist[[1]]<-NULL
+for(i in 1:nrow(SyntheticPop)){if(is.na(SyntheticPop[i,"EMTAK"])){SyntheticPop[i,"EMTAK"]<-"NA"}}
+for(i in 1:nrow(SyntheticPop)){
+  for(t in 1:nrow(Emtak.x.Dist_Red)){
+    if(SyntheticPop[i,"EMTAK"]==Emtak.x.Dist_Red[t,"Section"]){
+      SyntheticPop[i,"WorkDist"]<-sample(listWorkDist, size = 1, prob=c(Emtak.x.Dist_Red[2,t],Emtak.x.Dist_Red[3,t],Emtak.x.Dist_Red[4,t],Emtak.x.Dist_Red[5,t],Emtak.x.Dist_Red[6,t],Emtak.x.Dist_Red[7,t],Emtak.x.Dist_Red[8,t],Emtak.x.Dist_Red[9,t]))
+    }
+  }}
+
+###Assigning weights to each cell, depending on the class as in the methodology by Jimi Oke et al. 
+DistanceMatrix<-Distance.District
+DistanceMatrix$WEIGHT<-as.numeric(NA)
+for(i in 1:nrow(DistanceMatrix)){
+  if(is.na(DistanceMatrix[i,"Residence"])==FALSE & DistanceMatrix[i,"Residence"]=="LRW"){DistanceMatrix[i,"WEIGHT"]<-1}
+  if(is.na(DistanceMatrix[i,"Residence"])==FALSE & DistanceMatrix[i,"Residence"]=="HRW"){DistanceMatrix[i,"WEIGHT"]<-2}
+  if(is.na(DistanceMatrix[i,"Residence"])==FALSE & DistanceMatrix[i,"Residence"]=="MW"){DistanceMatrix[i,"WEIGHT"]<-5}
+  if(is.na(DistanceMatrix[i,"Residence"])==FALSE & DistanceMatrix[i,"Residence"]=="OW"){DistanceMatrix[i,"WEIGHT"]<-10}
+}
+
+library(dplyr)
+listcelldf <- DistanceMatrix
+listcelldf <- distinct(listcelldf, InputID, .keep_all = TRUE)
+listcelldf$SUM<-as.numeric(NA)
+for(i in 1:nrow(listcelldf)){
+  if(is.na(listcelldf[i,"SUM"]==TRUE)){
+    SUM <- 0
+    for(t in 1:(nrow(listcelldf)-1)){
+      if(listcelldf[i,"Residenc_1"]==listcelldf[t,"Residenc_1"] & is.na(listcelldf[t,"WEIGHT"])==FALSE){
+        SUM <- SUM+listcelldf[t,"WEIGHT"]}}
+    for(l in 1:nrow(listcelldf)){if(listcelldf[l,"Residenc_1"]==listcelldf[i,"Residenc_1"] & is.na(listcelldf[l,"SUM"])==TRUE){listcelldf[l,"SUM"]<-SUM}}}}
+      
+
+###Assigning to each cell, the total of weights in its own district
+listcelldf <- distinct(listcelldf, SUM, .keep_all = TRUE)
+listcelldf$TargetID<-NULL
+listcelldf$Distance<-NULL
+listcelldf$Residence<-NULL
+listcelldf$Destinatio<-NULL
+listcelldf$Destinat_1<-NULL
+listcelldf$Residence.IDGrid.Land<-NULL
+listcelldf$Residence.ID_District<-NULL
+listcelldf$Destination_Grid.Land<-NULL
+listcelldf$Destination_District<-NULL
+listcelldf$Control<-NULL
+listcelldf$one<-NULL
+listcelldf$two<-NULL
+listcelldf$three<-NULL
+listcelldf$four<-NULL
+listcelldf$five<-NULL
+listcelldf$six<-NULL
+listcelldf$seven<-NULL
+listcelldf$eight<-NULL
+listcelldf$InputID<-NULL
+listcelldf$WEIGHT<-NULL
+DistanceMatrix$SUM<-NA
+for(i in 1:nrow(DistanceMatrix)){
+  for(t in 1:nrow(listcelldf)){if(DistanceMatrix[i,"Residenc_1"]==listcelldf[t,"Residenc_1"]){DistanceMatrix[i,"SUM"]<-listcelldf[t,"SUM"]}}}
+
+####Calculating, for each cell, the ratio between the weight and the total of weights in its district --> probs of working in said cell when working in said district
+DistanceMatrix$Pc<-as.numeric(NA)
+for(i in 1:nrow(DistanceMatrix)){DistanceMatrix[i,"Pc"]<-(DistanceMatrix[i,"WEIGHT"]/DistanceMatrix[i,"SUM"])}
+library(dplyr)
+listcelldf2 <- DistanceMatrix
+listcelldf2 <- distinct(listcelldf2, InputID, .keep_all = TRUE)
+CellDist1<-read.csv(text="Cell, Pc")
+for(i in 1:nrow(listcelldf2)){if(listcelldf2[i,"Residenc_1"]==1){###District 1
+  CellDist1[nrow(CellDist1)+1,"Cell"]<-listcelldf2[i,"InputID"]###Cell ID
+  CellDist1[nrow(CellDist1),"Pc"]<-listcelldf2[i,"Pc"]###Pc
+  CellDist1[nrow(CellDist1),"CellClass"]<-listcelldf2[i,"Residence"]###Cell class
+}}
+CellDist2<-read.csv(text="Cell, Pc")
+for(i in 1:nrow(listcelldf2)){if(listcelldf2[i,"Residenc_1"]==2){
+  CellDist2[nrow(CellDist2)+1,"Cell"]<-listcelldf2[i,"InputID"]
+  CellDist2[nrow(CellDist2),"Pc"]<-listcelldf2[i,"Pc"]
+  CellDist2[nrow(CellDist2),"CellClass"]<-listcelldf2[i,"Residence"]
+}}
+CellDist3<-read.csv(text="Cell, Pc")
+for(i in 1:nrow(listcelldf2)){if(listcelldf2[i,"Residenc_1"]==3){
+  CellDist3[nrow(CellDist3)+1,"Cell"]<-listcelldf2[i,"InputID"]
+  CellDist3[nrow(CellDist3),"Pc"]<-listcelldf2[i,"Pc"]
+  CellDist3[nrow(CellDist3),"CellClass"]<-listcelldf2[i,"Residence"]
+}}
+CellDist4<-read.csv(text="Cell, Pc")
+for(i in 1:nrow(listcelldf2)){if(listcelldf2[i,"Residenc_1"]==4){
+  CellDist4[nrow(CellDist4)+1,"Cell"]<-listcelldf2[i,"InputID"]
+  CellDist4[nrow(CellDist4),"Pc"]<-listcelldf2[i,"Pc"]
+  CellDist4[nrow(CellDist4),"CellClass"]<-listcelldf2[i,"Residence"]
+}}
+CellDist5<-read.csv(text="Cell, Pc")
+for(i in 1:nrow(listcelldf2)){if(listcelldf2[i,"Residenc_1"]==5){
+  CellDist5[nrow(CellDist5)+1,"Cell"]<-listcelldf2[i,"InputID"]
+  CellDist5[nrow(CellDist5),"Pc"]<-listcelldf2[i,"Pc"]
+  CellDist5[nrow(CellDist5),"CellClass"]<-listcelldf2[i,"Residence"]
+}}
+CellDist6<-read.csv(text="Cell, Pc")
+for(i in 1:nrow(listcelldf2)){if(listcelldf2[i,"Residenc_1"]==6){
+  CellDist6[nrow(CellDist6)+1,"Cell"]<-listcelldf2[i,"InputID"]
+  CellDist6[nrow(CellDist6),"Pc"]<-listcelldf2[i,"Pc"]
+  CellDist6[nrow(CellDist6),"CellClass"]<-listcelldf2[i,"Residence"]
+}}
+CellDist7<-read.csv(text="Cell, Pc")
+for(i in 1:nrow(listcelldf2)){if(listcelldf2[i,"Residenc_1"]==7){
+  CellDist7[nrow(CellDist7)+1,"Cell"]<-listcelldf2[i,"InputID"]
+  CellDist7[nrow(CellDist7),"Pc"]<-listcelldf2[i,"Pc"]
+  CellDist7[nrow(CellDist7),"CellClass"]<-listcelldf2[i,"Residence"]
+}}
+CellDist8<-read.csv(text="Cell, Pc")
+for(i in 1:nrow(listcelldf2)){if(listcelldf2[i,"Residenc_1"]==8){
+  CellDist8[nrow(CellDist8)+1,"Cell"]<-listcelldf2[i,"InputID"]
+  CellDist8[nrow(CellDist8),"Pc"]<-listcelldf2[i,"Pc"]
+  CellDist8[nrow(CellDist8),"CellClass"]<-listcelldf2[i,"Residence"]
+}}
+
+
+for(i in 1:nrow(CellDist1)){if(is.na(CellDist1[i,"Pc"])==TRUE){CellDist1[i,"Pc"]<-0}}
+for(i in 1:nrow(CellDist2)){if(is.na(CellDist2[i,"Pc"])==TRUE){CellDist2[i,"Pc"]<-0}}
+for(i in 1:nrow(CellDist3)){if(is.na(CellDist3[i,"Pc"])==TRUE){CellDist3[i,"Pc"]<-0}}
+for(i in 1:nrow(CellDist4)){if(is.na(CellDist4[i,"Pc"])==TRUE){CellDist4[i,"Pc"]<-0}}
+for(i in 1:nrow(CellDist5)){if(is.na(CellDist5[i,"Pc"])==TRUE){CellDist5[i,"Pc"]<-0}}
+for(i in 1:nrow(CellDist6)){if(is.na(CellDist6[i,"Pc"])==TRUE){CellDist6[i,"Pc"]<-0}}
+for(i in 1:nrow(CellDist7)){if(is.na(CellDist7[i,"Pc"])==TRUE){CellDist7[i,"Pc"]<-0}}
+for(i in 1:nrow(CellDist8)){if(is.na(CellDist8[i,"Pc"])==TRUE){CellDist8[i,"Pc"]<-0}}
+
+
+#Assigning the cells depending on the district of work, as calculated above, and the weights of the single cells
+#No last mile gravitational model, because it may be challenging to calculate also the prob based on distance from each cell of residence to each cell of work --> possibly integrated later --> Here I may want to keep the prob tied only to the cell weight though, since it is already disaggregated per EMTAK field, adding the probs related to the distance adds noise to the model of Jimi Oke et. al --> actually also this is probably solved afterwards
+
+SyntheticPop$WCell<-NA
+for(i in 1:nrow(CellDist1)){
+  if(is.na(CellDist1[i,2])==TRUE){CellDist1[i,2]<-0}
+}
+for(i in 1:nrow(CellDist2)){
+  if(is.na(CellDist2[i,2])==TRUE){CellDist2[i,2]<-0}
+}
+for(i in 1:nrow(CellDist3)){
+  if(is.na(CellDist3[i,2])==TRUE){CellDist3[i,2]<-0}
+}
+for(i in 1:nrow(CellDist4)){
+  if(is.na(CellDist4[i,2])==TRUE){CellDist4[i,2]<-0}
+}
+for(i in 1:nrow(CellDist5)){
+  if(is.na(CellDist5[i,2])==TRUE){CellDist5[i,2]<-0}
+}
+for(i in 1:nrow(CellDist6)){
+  if(is.na(CellDist6[i,2])==TRUE){CellDist6[i,2]<-0}
+}
+for(i in 1:nrow(CellDist7)){
+  if(is.na(CellDist7[i,2])==TRUE){CellDist7[i,2]<-0}
+}
+for(i in 1:nrow(CellDist8)){
+  if(is.na(CellDist8[i,2])==TRUE){CellDist8[i,2]<-0}
+}
+
+
+listCell1<-as.list(unique(CellDist1[,"Cell"]))
+listCell2<-as.list(unique(CellDist2[,"Cell"]))
+listCell3<-as.list(unique(CellDist3[,"Cell"]))
+listCell4<-as.list(unique(CellDist4[,"Cell"]))
+listCell5<-as.list(unique(CellDist5[,"Cell"]))
+listCell6<-as.list(unique(CellDist6[,"Cell"]))
+listCell7<-as.list(unique(CellDist7[,"Cell"]))
+listCell8<-as.list(unique(CellDist8[,"Cell"]))
+for(i in 1:nrow(SyntheticPop)){
+  if(is.na(SyntheticPop[i,"WorkDist"])==FALSE & SyntheticPop[i,"WorkDist"]=="X1"){
+    SyntheticPop[i,"WCell"]<-sample(listCell1, 1, prob=c(CellDist1[1,"Pc"], CellDist1[2,"Pc"], CellDist1[3,"Pc"],CellDist1[4,"Pc"],CellDist1[5,"Pc"],CellDist1[6,"Pc"],CellDist1[7,"Pc"],CellDist1[8,"Pc"],CellDist1[9,"Pc"],CellDist1[10,"Pc"],CellDist1[11,"Pc"],CellDist1[12,"Pc"],CellDist1[13,"Pc"],CellDist1[14,"Pc"],CellDist1[15,"Pc"], CellDist1[16,"Pc"], CellDist1[17,"Pc"],CellDist1[18,"Pc"],CellDist1[19,"Pc"],CellDist1[20,"Pc"],CellDist1[21,"Pc"],CellDist1[22,"Pc"],CellDist1[23,"Pc"],CellDist1[24,"Pc"],CellDist1[25,"Pc"],CellDist1[26,"Pc"],CellDist1[27,"Pc"],CellDist1[28,"Pc"],CellDist1[29,"Pc"], CellDist1[30,"Pc"], CellDist1[31,"Pc"],CellDist1[32,"Pc"],CellDist1[33,"Pc"],CellDist1[34,"Pc"],CellDist1[35,"Pc"],CellDist1[36,"Pc"],CellDist1[37,"Pc"],CellDist1[38,"Pc"],CellDist1[39,"Pc"],CellDist1[40,"Pc"],CellDist1[41,"Pc"],CellDist1[42,"Pc"],CellDist1[43,"Pc"], CellDist1[44,"Pc"], CellDist1[45,"Pc"],CellDist1[46,"Pc"],CellDist1[47,"Pc"],CellDist1[48,"Pc"],CellDist1[49,"Pc"],CellDist1[50,"Pc"],CellDist1[51,"Pc"],CellDist1[52,"Pc"],CellDist1[53,"Pc"],CellDist1[54,"Pc"],CellDist1[55,"Pc"],CellDist1[56,"Pc"],CellDist1[57,"Pc"], CellDist1[58,"Pc"], CellDist1[59,"Pc"],CellDist1[60,"Pc"],CellDist1[61,"Pc"],CellDist1[62,"Pc"],CellDist1[63,"Pc"],CellDist1[64,"Pc"],CellDist1[65,"Pc"],CellDist1[66,"Pc"],CellDist1[67,"Pc"],CellDist1[68,"Pc"],CellDist1[69,"Pc"],CellDist1[70,"Pc"],CellDist1[71,"Pc"], CellDist1[72,"Pc"], CellDist1[73,"Pc"],CellDist1[74,"Pc"],CellDist1[75,"Pc"],CellDist1[76,"Pc"],CellDist1[77,"Pc"],CellDist1[78,"Pc"],CellDist1[79,"Pc"],CellDist1[80,"Pc"],CellDist1[81,"Pc"],CellDist1[82,"Pc"],CellDist1[83,"Pc"],CellDist1[84,"Pc"],CellDist1[85,"Pc"], CellDist1[86,"Pc"], CellDist1[87,"Pc"],CellDist1[88,"Pc"],CellDist1[89,"Pc"],CellDist1[90,"Pc"],CellDist1[91,"Pc"],CellDist1[92,"Pc"],CellDist1[93,"Pc"],CellDist1[94,"Pc"],CellDist1[95,"Pc"],CellDist1[96,"Pc"],CellDist1[97,"Pc"],CellDist1[98,"Pc"],CellDist1[99,"Pc"], CellDist1[100,"Pc"], CellDist1[101,"Pc"],CellDist1[102,"Pc"],CellDist1[103,"Pc"],CellDist1[104,"Pc"],CellDist1[105,"Pc"],CellDist1[106,"Pc"],CellDist1[107,"Pc"],CellDist1[108,"Pc"],CellDist1[109,"Pc"],CellDist1[110,"Pc"],CellDist1[111,"Pc"],CellDist1[112,"Pc"],CellDist1[113,"Pc"],CellDist1[114,"Pc"],CellDist1[115,"Pc"]))
+  }
+  if(is.na(SyntheticPop[i,"WorkDist"])==FALSE & SyntheticPop[i,"WorkDist"]=="X2"){
+    SyntheticPop[i,"WCell"]<-sample(listCell2, 1, prob=c(CellDist2[1,"Pc"], CellDist2[2,"Pc"], CellDist2[3,"Pc"],CellDist2[4,"Pc"],CellDist2[5,"Pc"],CellDist2[6,"Pc"],CellDist2[7,"Pc"],CellDist2[8,"Pc"],CellDist2[9,"Pc"],CellDist2[10,"Pc"],CellDist2[11,"Pc"],CellDist2[12,"Pc"],CellDist2[13,"Pc"],CellDist2[14,"Pc"],CellDist2[15,"Pc"], CellDist2[16,"Pc"], CellDist2[17,"Pc"],CellDist2[18,"Pc"],CellDist2[19,"Pc"],CellDist2[20,"Pc"],CellDist2[21,"Pc"],CellDist2[22,"Pc"],CellDist2[23,"Pc"],CellDist2[24,"Pc"],CellDist2[25,"Pc"],CellDist2[26,"Pc"],CellDist2[27,"Pc"],CellDist2[28,"Pc"],CellDist2[29,"Pc"], CellDist2[30,"Pc"], CellDist2[31,"Pc"],CellDist2[32,"Pc"]))
+    }
+  if(is.na(SyntheticPop[i,"WorkDist"])==FALSE & SyntheticPop[i,"WorkDist"]=="X3"){
+    SyntheticPop[i,"WCell"]<-sample(listCell3, 1, prob=c(CellDist3[1,"Pc"], CellDist3[2,"Pc"], CellDist3[3,"Pc"],CellDist3[4,"Pc"],CellDist3[5,"Pc"],CellDist3[6,"Pc"],CellDist3[7,"Pc"],CellDist3[8,"Pc"],CellDist3[9,"Pc"],CellDist3[10,"Pc"],CellDist3[11,"Pc"],CellDist3[12,"Pc"],CellDist3[13,"Pc"],CellDist3[14,"Pc"],CellDist3[15,"Pc"], CellDist3[16,"Pc"], CellDist3[17,"Pc"],CellDist3[18,"Pc"],CellDist3[19,"Pc"],CellDist3[20,"Pc"],CellDist3[21,"Pc"],CellDist3[22,"Pc"],CellDist3[23,"Pc"],CellDist3[24,"Pc"],CellDist3[25,"Pc"],CellDist3[26,"Pc"],CellDist3[27,"Pc"],CellDist3[28,"Pc"],CellDist3[29,"Pc"], CellDist3[30,"Pc"], CellDist3[31,"Pc"],CellDist3[32,"Pc"],CellDist3[33,"Pc"],CellDist3[34,"Pc"],CellDist3[35,"Pc"],CellDist3[36,"Pc"],CellDist3[37,"Pc"],CellDist3[38,"Pc"],CellDist3[39,"Pc"],CellDist3[40,"Pc"],CellDist3[41,"Pc"],CellDist3[42,"Pc"],CellDist3[43,"Pc"], CellDist3[44,"Pc"], CellDist3[45,"Pc"],CellDist3[46,"Pc"],CellDist3[47,"Pc"],CellDist3[48,"Pc"],CellDist3[49,"Pc"],CellDist3[50,"Pc"],CellDist3[51,"Pc"],CellDist3[52,"Pc"],CellDist3[53,"Pc"],CellDist3[54,"Pc"],CellDist3[55,"Pc"],CellDist3[56,"Pc"],CellDist3[57,"Pc"], CellDist3[58,"Pc"], CellDist3[59,"Pc"],CellDist3[60,"Pc"],CellDist3[61,"Pc"],CellDist3[62,"Pc"],CellDist3[63,"Pc"],CellDist3[64,"Pc"],CellDist3[65,"Pc"]))
+  }
+  if(is.na(SyntheticPop[i,"WorkDist"])==FALSE & SyntheticPop[i,"WorkDist"]=="X4"){
+    SyntheticPop[i,"WCell"]<-sample(listCell4, 1, prob=c(CellDist4[1,"Pc"], CellDist4[2,"Pc"], CellDist4[3,"Pc"],CellDist4[4,"Pc"],CellDist4[5,"Pc"],CellDist4[6,"Pc"],CellDist4[7,"Pc"],CellDist4[8,"Pc"],CellDist4[9,"Pc"],CellDist4[10,"Pc"],CellDist4[11,"Pc"],CellDist4[12,"Pc"],CellDist4[13,"Pc"],CellDist4[14,"Pc"],CellDist4[15,"Pc"], CellDist4[16,"Pc"], CellDist4[17,"Pc"],CellDist4[18,"Pc"],CellDist4[19,"Pc"],CellDist4[20,"Pc"],CellDist4[21,"Pc"],CellDist4[22,"Pc"],CellDist4[23,"Pc"],CellDist4[24,"Pc"],CellDist4[25,"Pc"],CellDist4[26,"Pc"],CellDist4[27,"Pc"],CellDist4[28,"Pc"],CellDist4[29,"Pc"], CellDist4[30,"Pc"], CellDist4[31,"Pc"],CellDist4[32,"Pc"],CellDist4[33,"Pc"],CellDist4[34,"Pc"],CellDist4[35,"Pc"],CellDist4[36,"Pc"],CellDist4[37,"Pc"],CellDist4[38,"Pc"],CellDist4[39,"Pc"],CellDist4[40,"Pc"],CellDist4[41,"Pc"],CellDist4[42,"Pc"],CellDist4[43,"Pc"], CellDist4[44,"Pc"], CellDist4[45,"Pc"],CellDist4[46,"Pc"],CellDist4[47,"Pc"],CellDist4[48,"Pc"],CellDist4[49,"Pc"],CellDist4[50,"Pc"],CellDist4[51,"Pc"],CellDist4[52,"Pc"],CellDist4[53,"Pc"],CellDist4[54,"Pc"],CellDist4[55,"Pc"],CellDist4[56,"Pc"],CellDist4[57,"Pc"], CellDist4[58,"Pc"], CellDist4[59,"Pc"],CellDist4[60,"Pc"],CellDist4[61,"Pc"],CellDist4[62,"Pc"],CellDist4[63,"Pc"],CellDist4[64,"Pc"],CellDist4[65,"Pc"],CellDist4[66,"Pc"],CellDist4[67,"Pc"],CellDist4[68,"Pc"],CellDist4[69,"Pc"],CellDist4[70,"Pc"],CellDist4[71,"Pc"], CellDist4[72,"Pc"], CellDist4[73,"Pc"],CellDist4[74,"Pc"],CellDist4[75,"Pc"],CellDist4[76,"Pc"],CellDist4[77,"Pc"],CellDist4[78,"Pc"],CellDist4[79,"Pc"],CellDist4[80,"Pc"],CellDist4[81,"Pc"],CellDist4[82,"Pc"],CellDist4[83,"Pc"],CellDist4[84,"Pc"],CellDist4[85,"Pc"], CellDist4[86,"Pc"], CellDist4[87,"Pc"],CellDist4[88,"Pc"],CellDist4[89,"Pc"],CellDist4[90,"Pc"],CellDist4[91,"Pc"],CellDist4[92,"Pc"],CellDist4[93,"Pc"],CellDist4[94,"Pc"],CellDist4[95,"Pc"],CellDist4[96,"Pc"],CellDist4[97,"Pc"],CellDist4[98,"Pc"],CellDist4[99,"Pc"], CellDist4[100,"Pc"], CellDist4[101,"Pc"],CellDist4[102,"Pc"],CellDist4[103,"Pc"],CellDist4[104,"Pc"],CellDist4[105,"Pc"],CellDist4[106,"Pc"],CellDist4[107,"Pc"],CellDist4[108,"Pc"]))
+  }
+  if(is.na(SyntheticPop[i,"WorkDist"])==FALSE & SyntheticPop[i,"WorkDist"]=="X5"){
+    SyntheticPop[i,"WCell"]<-sample(listCell5, 1, prob=c(CellDist5[1,"Pc"], CellDist5[2,"Pc"], CellDist5[3,"Pc"],CellDist5[4,"Pc"],CellDist5[5,"Pc"],CellDist5[6,"Pc"],CellDist5[7,"Pc"],CellDist5[8,"Pc"],CellDist5[9,"Pc"],CellDist5[10,"Pc"],CellDist5[11,"Pc"],CellDist5[12,"Pc"],CellDist5[13,"Pc"],CellDist5[14,"Pc"],CellDist5[15,"Pc"], CellDist5[16,"Pc"], CellDist5[17,"Pc"],CellDist5[18,"Pc"],CellDist5[19,"Pc"],CellDist5[20,"Pc"],CellDist5[21,"Pc"],CellDist5[22,"Pc"],CellDist5[23,"Pc"],CellDist5[24,"Pc"],CellDist5[25,"Pc"],CellDist5[26,"Pc"],CellDist5[27,"Pc"],CellDist5[28,"Pc"]))
+  }
+  if(is.na(SyntheticPop[i,"WorkDist"])==FALSE & SyntheticPop[i,"WorkDist"]=="X6"){
+    SyntheticPop[i,"WCell"]<-sample(listCell6, 1, prob=c(CellDist6[1,"Pc"], CellDist6[2,"Pc"], CellDist6[3,"Pc"],CellDist6[4,"Pc"],CellDist6[5,"Pc"],CellDist6[6,"Pc"],CellDist6[7,"Pc"],CellDist6[8,"Pc"],CellDist6[9,"Pc"],CellDist6[10,"Pc"],CellDist6[11,"Pc"],CellDist6[12,"Pc"],CellDist6[13,"Pc"],CellDist6[14,"Pc"],CellDist6[15,"Pc"], CellDist6[16,"Pc"], CellDist6[17,"Pc"],CellDist6[18,"Pc"],CellDist6[19,"Pc"],CellDist6[20,"Pc"],CellDist6[21,"Pc"],CellDist6[22,"Pc"],CellDist6[23,"Pc"],CellDist6[24,"Pc"],CellDist6[25,"Pc"],CellDist6[26,"Pc"],CellDist6[27,"Pc"],CellDist6[28,"Pc"],CellDist6[29,"Pc"], CellDist6[30,"Pc"], CellDist6[31,"Pc"],CellDist6[32,"Pc"],CellDist6[33,"Pc"],CellDist6[34,"Pc"],CellDist6[35,"Pc"],CellDist6[36,"Pc"],CellDist6[37,"Pc"],CellDist6[38,"Pc"],CellDist6[39,"Pc"],CellDist6[40,"Pc"],CellDist6[41,"Pc"],CellDist6[42,"Pc"],CellDist6[43,"Pc"], CellDist6[44,"Pc"], CellDist6[45,"Pc"],CellDist6[46,"Pc"],CellDist6[47,"Pc"],CellDist6[48,"Pc"],CellDist6[49,"Pc"],CellDist6[50,"Pc"],CellDist6[51,"Pc"],CellDist6[52,"Pc"],CellDist6[53,"Pc"],CellDist6[54,"Pc"],CellDist6[55,"Pc"],CellDist6[56,"Pc"],CellDist6[57,"Pc"], CellDist6[58,"Pc"], CellDist6[59,"Pc"],CellDist6[60,"Pc"],CellDist6[61,"Pc"],CellDist6[62,"Pc"],CellDist6[63,"Pc"],CellDist6[64,"Pc"],CellDist6[65,"Pc"],CellDist6[66,"Pc"],CellDist6[67,"Pc"],CellDist6[68,"Pc"],CellDist6[69,"Pc"],CellDist6[70,"Pc"],CellDist6[71,"Pc"], CellDist6[72,"Pc"], CellDist6[73,"Pc"],CellDist6[74,"Pc"],CellDist6[75,"Pc"],CellDist6[76,"Pc"],CellDist6[77,"Pc"],CellDist6[78,"Pc"],CellDist6[79,"Pc"],CellDist6[80,"Pc"],CellDist6[81,"Pc"],CellDist6[82,"Pc"],CellDist6[83,"Pc"]))
+  }
+  if(is.na(SyntheticPop[i,"WorkDist"])==FALSE & SyntheticPop[i,"WorkDist"]=="X7"){
+    SyntheticPop[i,"WCell"]<-sample(listCell7, 1, prob=c(CellDist7[1,"Pc"], CellDist7[2,"Pc"], CellDist7[3,"Pc"],CellDist7[4,"Pc"],CellDist7[5,"Pc"],CellDist7[6,"Pc"],CellDist7[7,"Pc"],CellDist7[8,"Pc"],CellDist7[9,"Pc"],CellDist7[10,"Pc"],CellDist7[11,"Pc"],CellDist7[12,"Pc"],CellDist7[13,"Pc"],CellDist7[14,"Pc"],CellDist7[15,"Pc"], CellDist7[16,"Pc"], CellDist7[17,"Pc"],CellDist7[18,"Pc"],CellDist7[19,"Pc"],CellDist7[20,"Pc"],CellDist7[21,"Pc"],CellDist7[22,"Pc"],CellDist7[23,"Pc"],CellDist7[24,"Pc"],CellDist7[25,"Pc"],CellDist7[26,"Pc"],CellDist7[27,"Pc"],CellDist7[28,"Pc"],CellDist7[29,"Pc"], CellDist7[30,"Pc"], CellDist7[31,"Pc"],CellDist7[32,"Pc"],CellDist7[33,"Pc"],CellDist7[34,"Pc"],CellDist7[35,"Pc"],CellDist7[36,"Pc"],CellDist7[37,"Pc"],CellDist7[38,"Pc"],CellDist7[39,"Pc"],CellDist7[40,"Pc"],CellDist7[41,"Pc"],CellDist7[42,"Pc"],CellDist7[43,"Pc"], CellDist7[44,"Pc"], CellDist7[45,"Pc"],CellDist7[46,"Pc"],CellDist7[47,"Pc"],CellDist7[48,"Pc"],CellDist7[49,"Pc"],CellDist7[50,"Pc"],CellDist7[51,"Pc"],CellDist7[52,"Pc"],CellDist7[53,"Pc"],CellDist7[54,"Pc"],CellDist7[55,"Pc"],CellDist7[56,"Pc"],CellDist7[57,"Pc"], CellDist7[58,"Pc"], CellDist7[59,"Pc"],CellDist7[60,"Pc"],CellDist7[61,"Pc"],CellDist7[62,"Pc"],CellDist7[63,"Pc"],CellDist7[64,"Pc"],CellDist7[65,"Pc"],CellDist7[66,"Pc"],CellDist7[67,"Pc"],CellDist7[68,"Pc"],CellDist7[69,"Pc"],CellDist7[70,"Pc"],CellDist7[71,"Pc"], CellDist7[72,"Pc"], CellDist7[73,"Pc"],CellDist7[74,"Pc"],CellDist7[75,"Pc"],CellDist7[76,"Pc"],CellDist7[77,"Pc"],CellDist7[78,"Pc"]))
+  }
+  if(is.na(SyntheticPop[i,"WorkDist"])==FALSE & SyntheticPop[i,"WorkDist"]=="X8"){
+    SyntheticPop[i,"WCell"]<-sample(listCell8, 1, prob=c(CellDist8[1,"Pc"], CellDist8[2,"Pc"], CellDist8[3,"Pc"],CellDist8[4,"Pc"],CellDist8[5,"Pc"],CellDist8[6,"Pc"],CellDist8[7,"Pc"],CellDist8[8,"Pc"],CellDist8[9,"Pc"],CellDist8[10,"Pc"],CellDist8[11,"Pc"],CellDist8[12,"Pc"],CellDist8[13,"Pc"],CellDist8[14,"Pc"],CellDist8[15,"Pc"], CellDist8[16,"Pc"], CellDist8[17,"Pc"],CellDist8[18,"Pc"],CellDist8[19,"Pc"],CellDist8[20,"Pc"],CellDist8[21,"Pc"],CellDist8[22,"Pc"],CellDist8[23,"Pc"],CellDist8[24,"Pc"],CellDist8[25,"Pc"],CellDist8[26,"Pc"],CellDist8[27,"Pc"],CellDist8[28,"Pc"],CellDist8[29,"Pc"], CellDist8[30,"Pc"], CellDist8[31,"Pc"],CellDist8[32,"Pc"],CellDist8[33,"Pc"],CellDist8[34,"Pc"],CellDist8[35,"Pc"],CellDist8[36,"Pc"],CellDist8[37,"Pc"],CellDist8[38,"Pc"],CellDist8[39,"Pc"],CellDist8[40,"Pc"],CellDist8[41,"Pc"],CellDist8[42,"Pc"],CellDist8[43,"Pc"], CellDist8[44,"Pc"], CellDist8[45,"Pc"],CellDist8[46,"Pc"],CellDist8[47,"Pc"],CellDist8[48,"Pc"],CellDist8[49,"Pc"],CellDist8[50,"Pc"],CellDist8[51,"Pc"],CellDist8[52,"Pc"],CellDist8[53,"Pc"],CellDist8[54,"Pc"],CellDist8[55,"Pc"],CellDist8[56,"Pc"],CellDist8[57,"Pc"], CellDist8[58,"Pc"], CellDist8[59,"Pc"],CellDist8[60,"Pc"],CellDist8[61,"Pc"],CellDist8[62,"Pc"],CellDist8[63,"Pc"],CellDist8[64,"Pc"],CellDist8[65,"Pc"],CellDist8[66,"Pc"],CellDist8[67,"Pc"],CellDist8[68,"Pc"],CellDist8[69,"Pc"],CellDist8[70,"Pc"],CellDist8[71,"Pc"], CellDist8[72,"Pc"], CellDist8[73,"Pc"],CellDist8[74,"Pc"],CellDist8[75,"Pc"],CellDist8[76,"Pc"],CellDist8[77,"Pc"],CellDist8[78,"Pc"],CellDist8[79,"Pc"],CellDist8[80,"Pc"],CellDist8[81,"Pc"],CellDist8[82,"Pc"],CellDist8[83,"Pc"],CellDist8[84,"Pc"],CellDist8[85,"Pc"], CellDist8[86,"Pc"], CellDist8[87,"Pc"],CellDist8[88,"Pc"],CellDist8[89,"Pc"],CellDist8[90,"Pc"],CellDist8[91,"Pc"],CellDist8[92,"Pc"],CellDist8[93,"Pc"],CellDist8[94,"Pc"],CellDist8[95,"Pc"],CellDist8[96,"Pc"],CellDist8[97,"Pc"],CellDist8[98,"Pc"],CellDist8[99,"Pc"], CellDist8[100,"Pc"], CellDist8[101,"Pc"],CellDist8[102,"Pc"],CellDist8[103,"Pc"],CellDist8[104,"Pc"],CellDist8[105,"Pc"],CellDist8[106,"Pc"],CellDist8[107,"Pc"]))
+  }
+}
+
+rm(listCell1)
+rm(listCell2)
+rm(listCell3)
+rm(listCell4)
+rm(listCell5)
+rm(listCell6)
+rm(listCell7)
+rm(listCell8)
+
+###End of the cell assignment for the categories coherent between EMTAK and Stat.ee
+
+DistanceMatrix$pDist<-NA
+DistanceMatrix$WDist_GRAV<-NA
+###Define pDist, not to be used yet, it will come into play only for the last mile cell assignment --> Distance between cell pair/Average distance between said cell and the district of the cell of destination
+for(i in 1:nrow(DistanceMatrix)){
+  if(DistanceMatrix[i,"Destinat_1"] == 1){
+    DistanceMatrix[i,"pDist"]<-(DistanceMatrix[i,"Distance"]/DistanceMatrix[i,"one"])}
+  if(DistanceMatrix[i,"Destinat_1"] == 2){
+    DistanceMatrix[i,"pDist"]<-(DistanceMatrix[i,"Distance"]/DistanceMatrix[i,"two"])}
+  if(DistanceMatrix[i,"Destinat_1"] == 3){
+    DistanceMatrix[i,"pDist"]<-(DistanceMatrix[i,"Distance"]/DistanceMatrix[i,"three"])}
+  if(DistanceMatrix[i,"Destinat_1"] == 4){
+    DistanceMatrix[i,"pDist"]<-(DistanceMatrix[i,"Distance"]/DistanceMatrix[i,"four"])}
+  if(DistanceMatrix[i,"Destinat_1"] == 5){
+    DistanceMatrix[i,"pDist"]<-(DistanceMatrix[i,"Distance"]/DistanceMatrix[i,"five"])}
+  if(DistanceMatrix[i,"Destinat_1"] == 6){
+    DistanceMatrix[i,"pDist"]<-(DistanceMatrix[i,"Distance"]/DistanceMatrix[i,"six"])}
+  if(DistanceMatrix[i,"Destinat_1"] == 7){
+    DistanceMatrix[i,"pDist"]<-(DistanceMatrix[i,"Distance"]/DistanceMatrix[i,"seven"])}
+  if(DistanceMatrix[i,"Destinat_1"] == 8){
+    DistanceMatrix[i,"pDist"]<-(DistanceMatrix[i,"Distance"]/DistanceMatrix[i,"eight"])}}
+##Report the weight of each district in term of number of jobs in the fields not coherent with the Census entries
+for(i in 1:nrow(DistanceMatrix)){
+  if(DistanceMatrix[i,"Destinat_1"] == 1){
+    DistanceMatrix[i,"WDist_GRAV"]<-EMTAKGRAV[1,"X1"]}
+  if(DistanceMatrix[i,"Destinat_1"] == 2){
+    DistanceMatrix[i,"WDist_GRAV"]<-EMTAKGRAV[1,"X2"]}
+  if(DistanceMatrix[i,"Destinat_1"] == 3){
+    DistanceMatrix[i,"WDist_GRAV"]<-EMTAKGRAV[1,"X3"]}
+  if(DistanceMatrix[i,"Destinat_1"] == 4){
+    DistanceMatrix[i,"WDist_GRAV"]<-EMTAKGRAV[1,"X4"]}
+  if(DistanceMatrix[i,"Destinat_1"] == 5){
+    DistanceMatrix[i,"WDist_GRAV"]<-EMTAKGRAV[1,"X5"]}
+  if(DistanceMatrix[i,"Destinat_1"] == 6){
+    DistanceMatrix[i,"WDist_GRAV"]<-EMTAKGRAV[1,"X6"]}
+  if(DistanceMatrix[i,"Destinat_1"] == 7){
+    DistanceMatrix[i,"WDist_GRAV"]<-EMTAKGRAV[1,"X7"]}
+  if(DistanceMatrix[i,"Destinat_1"] == 8){
+    DistanceMatrix[i,"WDist_GRAV"]<-EMTAKGRAV[1,"X8"]}}
+
+## the next step defines the district, so you do not use pDist yet, that will come into play only when assigning the last mile cell --> Prob of working in a district = weight of the district (num of jobs)/AVGDistance between the residence cell and the district at hand (Destinat_1) --> we slightly skew the totals for jobs in each district but we keep a certain spatial integrity (people in the far west do not end in big numbers working in the far east only because there is a strong attractor there)
+
+#It does not matter that the number are very low in value with this formulation, the probs assigned are compared against each other with the sample function
+
+DistanceMatrix$GravPull<-NA
+for(i in 1:nrow(DistanceMatrix)){
+  if(DistanceMatrix[i,"Destinat_1"]==1){
+    DistanceMatrix[i,"GravPull"]<-(DistanceMatrix[i,"WDist_GRAV"]/DistanceMatrix[i,"one"])}
+  if(DistanceMatrix[i,"Destinat_1"]==2){
+    DistanceMatrix[i,"GravPull"]<-(DistanceMatrix[i,"WDist_GRAV"]/DistanceMatrix[i,"two"])}
+  if(DistanceMatrix[i,"Destinat_1"]==3){
+    DistanceMatrix[i,"GravPull"]<-(DistanceMatrix[i,"WDist_GRAV"]/DistanceMatrix[i,"three"])}
+  if(DistanceMatrix[i,"Destinat_1"]==4){
+    DistanceMatrix[i,"GravPull"]<-(DistanceMatrix[i,"WDist_GRAV"]/DistanceMatrix[i,"four"])}
+  if(DistanceMatrix[i,"Destinat_1"]==5){
+    DistanceMatrix[i,"GravPull"]<-(DistanceMatrix[i,"WDist_GRAV"]/DistanceMatrix[i,"five"])}
+  if(DistanceMatrix[i,"Destinat_1"]==6){
+    DistanceMatrix[i,"GravPull"]<-(DistanceMatrix[i,"WDist_GRAV"]/DistanceMatrix[i,"six"])}
+  if(DistanceMatrix[i,"Destinat_1"]==7){
+    DistanceMatrix[i,"GravPull"]<-(DistanceMatrix[i,"WDist_GRAV"]/DistanceMatrix[i,"seven"])}
+  if(DistanceMatrix[i,"Destinat_1"]==8){
+    DistanceMatrix[i,"GravPull"]<-(DistanceMatrix[i,"WDist_GRAV"]/DistanceMatrix[i,"eight"])}
+}
+  
+DistanceMatrixT<-DistanceMatrix
+DistanceMatrixT$TargetID<-NULL
+DistanceMatrixT$Distance<-NULL
+DistanceMatrixT$Residence<-NULL
+DistanceMatrixT$Residenc_1<-NULL
+DistanceMatrixT$Destinatio<-NULL
+#DistanceMatrixT$Destinat_1<-NULL
+DistanceMatrixT$Residence.IDGrid.Land<-NULL
+DistanceMatrixT$Residence.ID_District<-NULL
+DistanceMatrixT$Destination_Grid.Land<-NULL
+DistanceMatrixT$Destination_District<-NULL
+DistanceMatrixT$Control<-NULL
+DistanceMatrixT$one<-NULL
+DistanceMatrixT$two<-NULL
+DistanceMatrixT$three<-NULL
+DistanceMatrixT$four<-NULL
+DistanceMatrixT$five<-NULL
+DistanceMatrixT$six<-NULL
+DistanceMatrixT$seven<-NULL
+DistanceMatrixT$eight<-NULL
+DistanceMatrixT$WEIGHT<-NULL
+DistanceMatrixT$SUM<-NULL
+DistanceMatrixT$Pc<-NULL
+DistanceMatrixT$pDist<-NULL
+DistanceMatrixT$WDist_GRAV<-NULL
+###The following gives warning, only the first values that meet the criteria InputID, Destinat_1 are kept. It is fine, GravPull should not change among these because the district of destination stays the same
+DistanceMatrixT<-reshape(DistanceMatrixT, idvar = "InputID", timevar = "Destinat_1", direction = "wide")  
+
+
+
+
+
+
+###Now you want to assign the district of work to each individual based on the cell of residence and the probability of working in one of the eight districts reported in DistanceMatrixT -- This takes around 20 minutes for 60000 individuals, time estimated 2h13m
+
+listDistGrav<-colnames(DistanceMatrixT)
+listDistGrav<-as.list(listDistGrav)
+listDistGrav[[1]]<-NULL
+for(i in 1:nrow(SyntheticPop)){if(is.na(SyntheticPop[i,"EMTAK"])==TRUE){SyntheticPop[i,"EMTAK"]<-"NA"}}
+for(i in 1:nrow(SyntheticPop)){
+  if(is.na(SyntheticPop[i,"WorkDist"])==TRUE & SyntheticPop[i,"EMTAK"]!="NA"){ 
+    for(t in 1:nrow(DistanceMatrixT)){
+      if(is.na(SyntheticPop[i,"RCell"])==FALSE & SyntheticPop[i,"RCell"]==DistanceMatrixT[t,"InputID"]){SyntheticPop[i,"WorkDist"]<-sample(listDistGrav, 1, prob= c(DistanceMatrixT[t,2], DistanceMatrixT[t,3],DistanceMatrixT[t,4],DistanceMatrixT[t,5],DistanceMatrixT[t,6], DistanceMatrixT[t,7],DistanceMatrixT[t,8], DistanceMatrixT[t,9]))}
+    }}}
+
+for(i in 1:nrow(SyntheticPop)){
+  if(is.na(SyntheticPop[i,"WorkDist"])==FALSE & SyntheticPop[i,"WorkDist"]=="GravPull.1"){SyntheticPop[i,"WorkDist"]<-1}
+  if(is.na(SyntheticPop[i,"WorkDist"])==FALSE & SyntheticPop[i,"WorkDist"]=="GravPull.2"){SyntheticPop[i,"WorkDist"]<-2}
+  if(is.na(SyntheticPop[i,"WorkDist"])==FALSE & SyntheticPop[i,"WorkDist"]=="GravPull.3"){SyntheticPop[i,"WorkDist"]<-3}
+  if(is.na(SyntheticPop[i,"WorkDist"])==FALSE & SyntheticPop[i,"WorkDist"]=="GravPull.4"){SyntheticPop[i,"WorkDist"]<-4}
+  if(is.na(SyntheticPop[i,"WorkDist"])==FALSE & SyntheticPop[i,"WorkDist"]=="GravPull.5"){SyntheticPop[i,"WorkDist"]<-5}
+  if(is.na(SyntheticPop[i,"WorkDist"])==FALSE & SyntheticPop[i,"WorkDist"]=="GravPull.6"){SyntheticPop[i,"WorkDist"]<-6}
+  if(is.na(SyntheticPop[i,"WorkDist"])==FALSE & SyntheticPop[i,"WorkDist"]=="GravPull.7"){SyntheticPop[i,"WorkDist"]<-7}
+  if(is.na(SyntheticPop[i,"WorkDist"])==FALSE & SyntheticPop[i,"WorkDist"]=="GravPull.8"){SyntheticPop[i,"WorkDist"]<-8}
+}
+
+####Now you should assign Pc based on the district of work and then to clusterize again, based on distance, only between the same classes
+
+###Calculate the probability of working in each class for each district based on the cell classes distribution
+
+HRW = 0
+LRW = 0
+OW = 0
+MW = 0
+for(i in 1:nrow(CellDist1)){
+  if(CellDist1[i,"CellClass"]=="HRW"){HRW=HRW+1}
+  if(CellDist1[i,"CellClass"]=="LRW"){LRW=LRW+1}
+  if(CellDist1[i,"CellClass"]=="OW"){OW=OW+1}
+  if(CellDist1[i,"CellClass"]=="MW"){MW=MW+1}
+}
+P_HRW_1 = HRW/(HRW+OW+MW+LRW)
+P_LRW_1 = LRW/(HRW+OW+MW+LRW)
+P_OW_1 = OW/(HRW+OW+MW+LRW)
+P_MW_1 = MW/(HRW+OW+MW+LRW)
+
+HRW = 0
+LRW = 0
+OW = 0
+MW = 0
+for(i in 1:nrow(CellDist2)){
+  if(CellDist2[i,"CellClass"]=="HRW"){HRW=HRW+1}
+  if(CellDist2[i,"CellClass"]=="LRW"){LRW=LRW+1}
+  if(CellDist2[i,"CellClass"]=="OW"){OW=OW+1}
+  if(CellDist2[i,"CellClass"]=="MW"){MW=MW+1}
+}
+P_HRW_2 = HRW/(HRW+OW+MW+LRW)
+P_LRW_2 = LRW/(HRW+OW+MW+LRW)
+P_OW_2 = OW/(HRW+OW+MW+LRW)
+P_MW_2 = MW/(HRW+OW+MW+LRW)
+
+HRW = 0
+LRW = 0
+OW = 0
+MW = 0
+for(i in 1:nrow(CellDist3)){
+  if(CellDist3[i,"CellClass"]=="HRW"){HRW=HRW+1}
+  if(CellDist3[i,"CellClass"]=="LRW"){LRW=LRW+1}
+  if(CellDist3[i,"CellClass"]=="OW"){OW=OW+1}
+  if(CellDist3[i,"CellClass"]=="MW"){MW=MW+1}
+}
+P_HRW_3 = HRW/(HRW+OW+MW+LRW)
+P_LRW_3 = LRW/(HRW+OW+MW+LRW)
+P_OW_3 = OW/(HRW+OW+MW+LRW)
+P_MW_3 = MW/(HRW+OW+MW+LRW)
+
+HRW = 0
+LRW = 0
+OW = 0
+MW = 0
+for(i in 1:nrow(CellDist4)){
+  if(CellDist4[i,"CellClass"]=="HRW"){HRW=HRW+1}
+  if(CellDist4[i,"CellClass"]=="LRW"){LRW=LRW+1}
+  if(CellDist4[i,"CellClass"]=="OW"){OW=OW+1}
+  if(CellDist4[i,"CellClass"]=="MW"){MW=MW+1}
+}
+P_HRW_4 = HRW/(HRW+OW+MW+LRW)
+P_LRW_4 = LRW/(HRW+OW+MW+LRW)
+P_OW_4 = OW/(HRW+OW+MW+LRW)
+P_MW_4 = MW/(HRW+OW+MW+LRW)
+HRW = 0
+LRW = 0
+OW = 0
+MW = 0
+for(i in 1:nrow(CellDist5)){
+  if(CellDist5[i,"CellClass"]=="HRW"){HRW=HRW+1}
+  if(CellDist5[i,"CellClass"]=="LRW"){LRW=LRW+1}
+  if(CellDist5[i,"CellClass"]=="OW"){OW=OW+1}
+  if(CellDist5[i,"CellClass"]=="MW"){MW=MW+1}
+}
+P_HRW_5 = HRW/(HRW+OW+MW+LRW)
+P_LRW_5 = LRW/(HRW+OW+MW+LRW)
+P_OW_5 = OW/(HRW+OW+MW+LRW)
+P_MW_5 = MW/(HRW+OW+MW+LRW)
+HRW = 0
+LRW = 0
+OW = 0
+MW = 0
+
+for(i in 1:nrow(CellDist6)){
+  if(CellDist6[i,"CellClass"]=="HRW"){HRW=HRW+1}
+  if(CellDist6[i,"CellClass"]=="LRW"){LRW=LRW+1}
+  if(CellDist6[i,"CellClass"]=="OW"){OW=OW+1}
+  if(CellDist6[i,"CellClass"]=="MW"){MW=MW+1}
+}
+P_HRW_6 = HRW/(HRW+OW+MW+LRW)
+P_LRW_6 = LRW/(HRW+OW+MW+LRW)
+P_OW_6 = OW/(HRW+OW+MW+LRW)
+P_MW_6 = MW/(HRW+OW+MW+LRW)
+HRW = 0
+LRW = 0
+OW = 0
+MW = 0
+
+for(i in 1:nrow(CellDist7)){
+  if(CellDist7[i,"CellClass"]=="HRW"){HRW=HRW+1}
+  if(CellDist7[i,"CellClass"]=="LRW"){LRW=LRW+1}
+  if(CellDist7[i,"CellClass"]=="OW"){OW=OW+1}
+  if(CellDist7[i,"CellClass"]=="MW"){MW=MW+1}
+}
+P_HRW_7 = HRW/(HRW+OW+MW+LRW)
+P_LRW_7 = LRW/(HRW+OW+MW+LRW)
+P_OW_7 = OW/(HRW+OW+MW+LRW)
+P_MW_7 = MW/(HRW+OW+MW+LRW)
+
+HRW = 0
+LRW = 0
+OW = 0
+MW = 0
+for(i in 1:nrow(CellDist8)){
+  if(CellDist8[i,"CellClass"]=="HRW"){HRW=HRW+1}
+  if(CellDist8[i,"CellClass"]=="LRW"){LRW=LRW+1}
+  if(CellDist8[i,"CellClass"]=="OW"){OW=OW+1}
+  if(CellDist8[i,"CellClass"]=="MW"){MW=MW+1}
+}
+P_HRW_8 = HRW/(HRW+OW+MW+LRW)
+P_LRW_8 = LRW/(HRW+OW+MW+LRW)
+P_OW_8 = OW/(HRW+OW+MW+LRW)
+P_MW_8 = MW/(HRW+OW+MW+LRW)
+HRW = 0
+LRW = 0
+OW = 0
+MW = 0
+
+listPc<-as.list("HRW")
+listPc[[2]]<-"LRW"
+listPc[[3]]<-"OW"
+listPc[[4]]<-"MW"
+SyntheticPop$CellClass<-NA
+for(i in 1:nrow(SyntheticPop)){
+  if(is.na(SyntheticPop[i,"WorkDist"])==FALSE & SyntheticPop[i,"WorkDist"]==1){SyntheticPop[i,"CellClass"]<-sample(listPc,1,prob=c(P_HRW_1,P_LRW_1,P_OW_1,P_MW_1))}
+  if(is.na(SyntheticPop[i,"WorkDist"])==FALSE & SyntheticPop[i,"WorkDist"]==2){SyntheticPop[i,"CellClass"]<-sample(listPc,1,prob=c(P_HRW_2,P_LRW_2,P_OW_2,P_MW_2))}
+  if(is.na(SyntheticPop[i,"WorkDist"])==FALSE & SyntheticPop[i,"WorkDist"]==3){SyntheticPop[i,"CellClass"]<-sample(listPc,1,prob=c(P_HRW_3,P_LRW_3,P_OW_3,P_MW_3))}
+  if(is.na(SyntheticPop[i,"WorkDist"])==FALSE & SyntheticPop[i,"WorkDist"]==4){SyntheticPop[i,"CellClass"]<-sample(listPc,1,prob=c(P_HRW_4,P_LRW_4,P_OW_4,P_MW_4))}
+  if(is.na(SyntheticPop[i,"WorkDist"])==FALSE & SyntheticPop[i,"WorkDist"]==5){SyntheticPop[i,"CellClass"]<-sample(listPc,1,prob=c(P_HRW_5,P_LRW_5,P_OW_1,P_MW_5))}
+  if(is.na(SyntheticPop[i,"WorkDist"])==FALSE & SyntheticPop[i,"WorkDist"]==6){SyntheticPop[i,"CellClass"]<-sample(listPc,1,prob=c(P_HRW_6,P_LRW_6,P_OW_6,P_MW_6))}
+  if(is.na(SyntheticPop[i,"WorkDist"])==FALSE & SyntheticPop[i,"WorkDist"]==7){SyntheticPop[i,"CellClass"]<-sample(listPc,1,prob=c(P_HRW_7,P_LRW_7,P_OW_7,P_MW_7))}
+  if(is.na(SyntheticPop[i,"WorkDist"])==FALSE & SyntheticPop[i,"WorkDist"]==8){SyntheticPop[i,"CellClass"]<-sample(listPc,1,prob=c(P_HRW_8,P_LRW_8,P_OW_8,P_MW_8))}}
+
+###Here you assign the final cell of work based on the distance(/AVGDIST)
+Dist1_HRW<-subset(DistanceMatrix, DistanceMatrix$Destinat_1==1)
+Dist1_HRW<-subset(Dist1_HRW, Dist1_HRW$Destinatio=="HRW")
+for(i in 1:nrow(SyntheticPop)){
+  if(is.na(SyntheticPop[i,"WorkDist"])==FALSE & SyntheticPop[i,"WorkDist"]=="1" & is.na(SyntheticPop[i,"CellClass"])==FALSE & SyntheticPop[i,"CellClass"]=="HRW"){
+    #print("yeah")
+    Dist1_HRW_X<-subset(Dist1_HRW, Dist1_HRW$InputID==SyntheticPop[i,"RCell"])
+    listofcells<-as.list(Dist1_HRW_X[,2])
+    listofdistances<-as.list(Dist1_HRW_X[,3])
+    listofprobs <- vector(mode = "list")
+    for(t in 1:nrow(Dist1_HRW_X)){
+      listofprobs[[length(listofprobs)+1]]<-1/listofdistances[[t]]
+    }
+    SyntheticPop[i,"WCell"]<-sample(listofcells, 1, prob=c(listofprobs))
+  }}
+
+listofdistances<-vector(mode = "list")
+listofcells<-vector(mode = "list")
+listofprobs <- vector(mode = "list")
+
+Dist1_LRW<-subset(DistanceMatrix, DistanceMatrix$Destinat_1==1)
+Dist1_LRW<-subset(Dist1_LRW, Dist1_LRW$Destinatio=="LRW")
+for(i in 1:nrow(SyntheticPop)){
+  if(is.na(SyntheticPop[i,"WorkDist"])==FALSE & SyntheticPop[i,"WorkDist"]=="1" & is.na(SyntheticPop[i,"CellClass"])==FALSE & SyntheticPop[i,"CellClass"]=="LRW"){
+    
+    Dist1_LRW_X<-subset(Dist1_LRW, Dist1_LRW$InputID==SyntheticPop[i,"RCell"])
+    listofcells<-as.list(Dist1_LRW_X[,2])
+    listofdistances<-as.list(Dist1_LRW_X[,3])
+    listofprobs <- vector(mode = "list")
+    for(t in 1:nrow(Dist1_LRW_X)){
+      listofprobs[[length(listofprobs)+1]]<-1/listofdistances[[t]]
+    }
+    SyntheticPop[i,"WCell"]<-sample(listofcells, 1, prob=c(listofprobs))
+    }}
+rm(Dist1_LRW)
+rm(Dist1_LRW_X)
+
+listofdistances<-vector(mode = "list")
+listofcells<-vector(mode = "list")
+listofprobs <- vector(mode = "list")
+
+Dist1_OW<-subset(DistanceMatrix, DistanceMatrix$Destinat_1==1)
+Dist1_OW<-subset(Dist1_OW, Dist1_OW$Destinatio=="OW")
+for(i in 1:nrow(SyntheticPop)){
+  if(is.na(SyntheticPop[i,"WorkDist"])==FALSE & SyntheticPop[i,"WorkDist"]=="1" & is.na(SyntheticPop[i,"CellClass"])==FALSE & SyntheticPop[i,"CellClass"]=="OW"){
+    
+    Dist1_OW_X<-subset(Dist1_OW, Dist1_OW$InputID==SyntheticPop[i,"RCell"])
+    listofcells<-as.list(Dist1_OW_X[,2])
+    listofdistances<-as.list(Dist1_OW_X[,3])
+    listofprobs <- vector(mode = "list")
+    for(t in 1:nrow(Dist1_OW_X)){
+      listofprobs[[length(listofprobs)+1]]<-1/listofdistances[[t]]
+    }
+    SyntheticPop[i,"WCell"]<-sample(listofcells, 1, prob=c(listofprobs))
+    }}
+rm(Dist1_OW)
+rm(Dist1_OW_X)
+
+
+listofdistances<-vector(mode = "list")
+listofcells<-vector(mode = "list")
+listofprobs <- vector(mode = "list")
+
+Dist1_MW<-subset(DistanceMatrix, DistanceMatrix$Destinat_1==1)
+Dist1_MW<-subset(Dist1_MW, Dist1_MW$Destinatio=="MW")
+for(i in 1:nrow(SyntheticPop)){
+  if(is.na(SyntheticPop[i,"WorkDist"])==FALSE & SyntheticPop[i,"WorkDist"]=="1" & is.na(SyntheticPop[i,"CellClass"])==FALSE & SyntheticPop[i,"CellClass"]=="MW"){
+    
+    Dist1_MW_X<-subset(Dist1_MW, Dist1_MW$InputID==SyntheticPop[i,"RCell"])
+    listofcells<-as.list(Dist1_MW_X[,2])
+    listofdistances<-as.list(Dist1_MW_X[,3])
+    listofprobs <- vector(mode = "list")
+    for(t in 1:nrow(Dist1_MW_X)){
+      listofprobs[[length(listofprobs)+1]]<-1/listofdistances[[t]]
+    }
+    SyntheticPop[i,"WCell"]<-sample(listofcells, 1, prob=c(listofprobs))
+    }}
+rm(Dist1_MW)
+rm(Dist1_MW_X)
+
+Dist2_HRW<-subset(DistanceMatrix, DistanceMatrix$Destinat_1==2)
+Dist2_HRW<-subset(Dist2_HRW, Dist2_HRW$Destinatio=="HRW")
+for(i in 1:nrow(SyntheticPop)){
+  if(is.na(SyntheticPop[i,"WorkDist"])==FALSE & SyntheticPop[i,"WorkDist"]=="2" & is.na(SyntheticPop[i,"CellClass"])==FALSE & SyntheticPop[i,"CellClass"]=="HRW"){
+    Dist2_HRW_X<-subset(Dist2_HRW, Dist2_HRW$InputID==SyntheticPop[i,"RCell"])
+    listofcells<-as.list(Dist2_HRW_X[,2])
+    listofdistances<-as.list(Dist2_HRW_X[,3])
+    listofprobs <- vector(mode = "list")
+    for(t in 1:nrow(Dist2_HRW_X)){
+      listofprobs[[length(listofprobs)+1]]<-1/listofdistances[[t]]
+    }
+    SyntheticPop[i,"WCell"]<-sample(listofcells, 1, prob=c(listofprobs))
+  }}
+
+listofdistances<-vector(mode = "list")
+listofcells<-vector(mode = "list")
+listofprobs <- vector(mode = "list")
+
+Dist2_LRW<-subset(DistanceMatrix, DistanceMatrix$Destinat_1==2)
+Dist2_LRW<-subset(Dist2_LRW, Dist2_LRW$Destinatio=="LRW")
+for(i in 1:nrow(SyntheticPop)){
+  if(is.na(SyntheticPop[i,"WorkDist"])==FALSE & SyntheticPop[i,"WorkDist"]=="2" & is.na(SyntheticPop[i,"CellClass"])==FALSE & SyntheticPop[i,"CellClass"]=="LRW"){
+    
+    Dist2_LRW_X<-subset(Dist2_LRW, Dist2_LRW$InputID==SyntheticPop[i,"RCell"])
+    listofcells<-as.list(Dist2_LRW_X[,2])
+    listofdistances<-as.list(Dist2_LRW_X[,3])
+    listofprobs <- vector(mode = "list")
+    for(t in 1:nrow(Dist2_LRW_X)){
+      listofprobs[[length(listofprobs)+1]]<-1/listofdistances[[t]]
+    }
+    SyntheticPop[i,"WCell"]<-sample(listofcells, 1, prob=c(listofprobs))
+    }}
+rm(Dist2_LRW)
+rm(Dist2_LRW_X)
+
+listofdistances<-vector(mode = "list")
+listofcells<-vector(mode = "list")
+listofprobs <- vector(mode = "list")
+
+Dist2_OW<-subset(DistanceMatrix, DistanceMatrix$Destinat_1==2)
+Dist2_OW<-subset(Dist2_OW, Dist2_OW$Destinatio=="OW")
+for(i in 1:nrow(SyntheticPop)){
+  if(is.na(SyntheticPop[i,"WorkDist"])==FALSE & SyntheticPop[i,"WorkDist"]=="2" & is.na(SyntheticPop[i,"CellClass"])==FALSE & SyntheticPop[i,"CellClass"]=="OW"){
+    
+    Dist2_OW_X<-subset(Dist2_OW, Dist2_OW$InputID==SyntheticPop[i,"RCell"])
+    listofcells<-as.list(Dist2_OW_X[,2])
+    listofdistances<-as.list(Dist2_OW_X[,3])
+    listofprobs <- vector(mode = "list")
+    for(t in 1:nrow(Dist2_OW_X)){
+      listofprobs[[length(listofprobs)+1]]<-1/listofdistances[[t]]
+    }
+    SyntheticPop[i,"WCell"]<-sample(listofcells, 1, prob=c(listofprobs))
+    }}
+rm(Dist2_OW)
+rm(Dist2_OW_X)
+
+
+listofdistances<-vector(mode = "list")
+listofcells<-vector(mode = "list")
+listofprobs <- vector(mode = "list")
+
+Dist2_MW<-subset(DistanceMatrix, DistanceMatrix$Destinat_1==2)
+Dist2_MW<-subset(Dist2_MW, Dist2_MW$Destinatio=="MW")
+for(i in 1:nrow(SyntheticPop)){
+  if(is.na(SyntheticPop[i,"WorkDist"])==FALSE & SyntheticPop[i,"WorkDist"]=="2" & is.na(SyntheticPop[i,"CellClass"])==FALSE & SyntheticPop[i,"CellClass"]=="MW"){
+    
+    Dist2_MW_X<-subset(Dist2_MW, Dist2_MW$InputID==SyntheticPop[i,"RCell"])
+    listofcells<-as.list(Dist2_MW_X[,2])
+    listofdistances<-as.list(Dist2_MW_X[,3])
+    listofprobs <- vector(mode = "list")
+    for(t in 1:nrow(Dist2_MW_X)){
+      listofprobs[[length(listofprobs)+1]]<-1/listofdistances[[t]]
+    }
+    SyntheticPop[i,"WCell"]<-sample(listofcells, 1, prob=c(listofprobs))
+    }}
+rm(Dist2_MW)
+rm(Dist2_MW_X)
+
+Dist3_HRW<-subset(DistanceMatrix, DistanceMatrix$Destinat_1==3)
+Dist3_HRW<-subset(Dist3_HRW, Dist3_HRW$Destinatio=="HRW")
+for(i in 1:nrow(SyntheticPop)){
+  if(is.na(SyntheticPop[i,"WorkDist"])==FALSE & SyntheticPop[i,"WorkDist"]=="3" & is.na(SyntheticPop[i,"CellClass"])==FALSE & SyntheticPop[i,"CellClass"]=="HRW"){
+    Dist3_HRW_X<-subset(Dist3_HRW, Dist3_HRW$InputID==SyntheticPop[i,"RCell"])
+    listofcells<-as.list(Dist3_HRW_X[,2])
+    listofdistances<-as.list(Dist3_HRW_X[,3])
+    listofprobs <- vector(mode = "list")
+    for(t in 1:nrow(Dist3_HRW_X)){
+      listofprobs[[length(listofprobs)+1]]<-1/listofdistances[[t]]
+    }
+    SyntheticPop[i,"WCell"]<-sample(listofcells, 1, prob=c(listofprobs))
+  }}
+
+
+listofdistances<-vector(mode = "list")
+listofcells<-vector(mode = "list")
+listofprobs <- vector(mode = "list")
+
+Dist3_LRW<-subset(DistanceMatrix, DistanceMatrix$Destinat_1==3)
+Dist3_LRW<-subset(Dist3_LRW, Dist3_LRW$Destinatio=="LRW")
+for(i in 1:nrow(SyntheticPop)){
+  if(is.na(SyntheticPop[i,"WorkDist"])==FALSE & SyntheticPop[i,"WorkDist"]=="3" & is.na(SyntheticPop[i,"CellClass"])==FALSE & SyntheticPop[i,"CellClass"]=="LRW"){
+    
+    Dist3_LRW_X<-subset(Dist3_LRW, Dist3_LRW$InputID==SyntheticPop[i,"RCell"])
+    listofcells<-as.list(Dist3_LRW_X[,2])
+    listofdistances<-as.list(Dist3_LRW_X[,3])
+    listofprobs <- vector(mode = "list")
+    for(t in 1:nrow(Dist3_LRW_X)){
+      listofprobs[[length(listofprobs)+1]]<-1/listofdistances[[t]]
+    }
+    SyntheticPop[i,"WCell"]<-sample(listofcells, 1, prob=c(listofprobs))
+    }}
+rm(Dist3_LRW)
+rm(Dist3_LRW_X)
+
+listofdistances<-vector(mode = "list")
+listofcells<-vector(mode = "list")
+listofprobs <- vector(mode = "list")
+
+Dist3_OW<-subset(DistanceMatrix, DistanceMatrix$Destinat_1==3)
+Dist3_OW<-subset(Dist3_OW, Dist3_OW$Destinatio=="OW")
+for(i in 1:nrow(SyntheticPop)){
+  if(is.na(SyntheticPop[i,"WorkDist"])==FALSE & SyntheticPop[i,"WorkDist"]=="3" & is.na(SyntheticPop[i,"CellClass"])==FALSE & SyntheticPop[i,"CellClass"]=="OW"){
+    
+    Dist3_OW_X<-subset(Dist3_OW, Dist3_OW$InputID==SyntheticPop[i,"RCell"])
+    listofcells<-as.list(Dist3_OW_X[,2])
+    listofdistances<-as.list(Dist3_OW_X[,3])
+    listofprobs <- vector(mode = "list")
+    for(t in 1:nrow(Dist3_OW_X)){
+      listofprobs[[length(listofprobs)+1]]<-1/listofdistances[[t]]
+    }
+    SyntheticPop[i,"WCell"]<-sample(listofcells, 1, prob=c(listofprobs))
+    }}
+rm(Dist3_OW)
+rm(Dist3_OW_X)
+
+
+listofdistances<-vector(mode = "list")
+listofcells<-vector(mode = "list")
+listofprobs <- vector(mode = "list")
+
+Dist3_MW<-subset(DistanceMatrix, DistanceMatrix$Destinat_1==3)
+Dist3_MW<-subset(Dist3_MW, Dist3_MW$Destinatio=="MW")
+for(i in 1:nrow(SyntheticPop)){
+  if(is.na(SyntheticPop[i,"WorkDist"])==FALSE & SyntheticPop[i,"WorkDist"]=="3" & is.na(SyntheticPop[i,"CellClass"])==FALSE & SyntheticPop[i,"CellClass"]=="MW"){
+    
+    Dist3_MW_X<-subset(Dist3_MW, Dist3_MW$InputID==SyntheticPop[i,"RCell"])
+    listofcells<-as.list(Dist3_MW_X[,2])
+    listofdistances<-as.list(Dist3_MW_X[,3])
+    listofprobs <- vector(mode = "list")
+    for(t in 1:nrow(Dist3_MW_X)){
+      listofprobs[[length(listofprobs)+1]]<-1/listofdistances[[t]] 
+    }
+    SyntheticPop[i,"WCell"]<-sample(listofcells, 1, prob=c(listofprobs))
+    }}
+rm(Dist3_MW)
+rm(Dist3_MW_X)
+
+Dist4_HRW<-subset(DistanceMatrix, DistanceMatrix$Destinat_1==4)
+Dist4_HRW<-subset(Dist4_HRW, Dist4_HRW$Destinatio=="HRW")
+for(i in 1:nrow(SyntheticPop)){
+  if(is.na(SyntheticPop[i,"WorkDist"])==FALSE & SyntheticPop[i,"WorkDist"]=="4" & is.na(SyntheticPop[i,"CellClass"])==FALSE & SyntheticPop[i,"CellClass"]=="HRW"){
+    Dist4_HRW_X<-subset(Dist4_HRW, Dist4_HRW$InputID==SyntheticPop[i,"RCell"])
+    listofcells<-as.list(Dist4_HRW_X[,2])
+    listofdistances<-as.list(Dist4_HRW_X[,3])
+    listofprobs <- vector(mode = "list")
+    for(t in 1:nrow(Dist4_HRW_X)){
+      listofprobs[[length(listofprobs)+1]]<-1/listofdistances[[t]]
+    }
+    SyntheticPop[i,"WCell"]<-sample(listofcells, 1, prob=c(listofprobs))
+  }}
+
+
+listofdistances<-vector(mode = "list")
+listofcells<-vector(mode = "list")
+listofprobs <- vector(mode = "list")
+
+Dist4_LRW<-subset(DistanceMatrix, DistanceMatrix$Destinat_1==4)
+Dist4_LRW<-subset(Dist4_LRW, Dist4_LRW$Destinatio=="LRW")
+for(i in 1:nrow(SyntheticPop)){
+  if(is.na(SyntheticPop[i,"WorkDist"])==FALSE & SyntheticPop[i,"WorkDist"]=="4" & is.na(SyntheticPop[i,"CellClass"])==FALSE & SyntheticPop[i,"CellClass"]=="LRW"){
+    
+    Dist4_LRW_X<-subset(Dist4_LRW, Dist4_LRW$InputID==SyntheticPop[i,"RCell"])
+    listofcells<-as.list(Dist4_LRW_X[,2])
+    listofdistances<-as.list(Dist4_LRW_X[,3])
+    listofprobs <- vector(mode = "list")
+    for(t in 1:nrow(Dist4_LRW_X)){
+      listofprobs[[length(listofprobs)+1]]<-1/listofdistances[[t]]
+    }
+    SyntheticPop[i,"WCell"]<-sample(listofcells, 1, prob=c(listofprobs))
+    }}
+rm(Dist4_LRW)
+rm(Dist4_LRW_X)
+
+listofdistances<-vector(mode = "list")
+listofcells<-vector(mode = "list")
+listofprobs <- vector(mode = "list")
+
+Dist4_OW<-subset(DistanceMatrix, DistanceMatrix$Destinat_1==4)
+Dist4_OW<-subset(Dist4_OW, Dist4_OW$Destinatio=="OW")
+for(i in 1:nrow(SyntheticPop)){
+  if(is.na(SyntheticPop[i,"WorkDist"])==FALSE & SyntheticPop[i,"WorkDist"]=="4" & is.na(SyntheticPop[i,"CellClass"])==FALSE & SyntheticPop[i,"CellClass"]=="OW"){
+    
+    Dist4_OW_X<-subset(Dist4_OW, Dist4_OW$InputID==SyntheticPop[i,"RCell"])
+    listofcells<-as.list(Dist4_OW_X[,2])
+    listofdistances<-as.list(Dist4_OW_X[,3])
+    listofprobs <- vector(mode = "list")
+    for(t in 1:nrow(Dist4_OW_X)){
+      listofprobs[[length(listofprobs)+1]]<-1/listofdistances[[t]]
+    }
+    SyntheticPop[i,"WCell"]<-sample(listofcells, 1, prob=c(listofprobs))
+    }}
+rm(Dist4_OW)
+rm(Dist4_OW_X)
+
+
+listofdistances<-vector(mode = "list")
+listofcells<-vector(mode = "list")
+listofprobs <- vector(mode = "list")
+
+Dist4_MW<-subset(DistanceMatrix, DistanceMatrix$Destinat_1==4)
+Dist4_MW<-subset(Dist4_MW, Dist4_MW$Destinatio=="MW")
+for(i in 1:nrow(SyntheticPop)){
+  if(is.na(SyntheticPop[i,"WorkDist"])==FALSE & SyntheticPop[i,"WorkDist"]=="4" & is.na(SyntheticPop[i,"CellClass"])==FALSE & SyntheticPop[i,"CellClass"]=="MW"){
+    
+    Dist4_MW_X<-subset(Dist4_MW, Dist4_MW$InputID==SyntheticPop[i,"RCell"])
+    listofcells<-as.list(Dist4_MW_X[,2])
+    listofdistances<-as.list(Dist4_MW_X[,3])
+    listofprobs <- vector(mode = "list")
+    for(t in 1:nrow(Dist4_MW_X)){
+      listofprobs[[length(listofprobs)+1]]<-1/listofdistances[[t]]
+    }
+    SyntheticPop[i,"WCell"]<-sample(listofcells, 1, prob=c(listofprobs))
+    }}
+rm(Dist4_MW)
+rm(Dist4_MW_X)
+
+Dist5_HRW<-subset(DistanceMatrix, DistanceMatrix$Destinat_1==5)
+Dist5_HRW<-subset(Dist5_HRW, Dist5_HRW$Destinatio=="HRW")
+for(i in 1:nrow(SyntheticPop)){
+  if(is.na(SyntheticPop[i,"WorkDist"])==FALSE & SyntheticPop[i,"WorkDist"]=="5" & is.na(SyntheticPop[i,"CellClass"])==FALSE & SyntheticPop[i,"CellClass"]=="HRW"){
+    Dist5_HRW_X<-subset(Dist5_HRW, Dist5_HRW$InputID==SyntheticPop[i,"RCell"])
+    listofcells<-as.list(Dist5_HRW_X[,2])
+    listofdistances<-as.list(Dist5_HRW_X[,3])
+    listofprobs <- vector(mode = "list")
+    for(t in 1:nrow(Dist5_HRW_X)){
+      listofprobs[[length(listofprobs)+1]]<-1/listofdistances[[t]]
+    }
+    SyntheticPop[i,"WCell"]<-sample(listofcells, 1, prob=c(listofprobs))
+  }}
+
+
+listofdistances<-vector(mode = "list")
+listofcells<-vector(mode = "list")
+listofprobs <- vector(mode = "list")
+
+Dist5_LRW<-subset(DistanceMatrix, DistanceMatrix$Destinat_1==5)
+Dist5_LRW<-subset(Dist5_LRW, Dist5_LRW$Destinatio=="LRW")
+for(i in 1:nrow(SyntheticPop)){
+  if(is.na(SyntheticPop[i,"WorkDist"])==FALSE & SyntheticPop[i,"WorkDist"]=="5" & is.na(SyntheticPop[i,"CellClass"])==FALSE & SyntheticPop[i,"CellClass"]=="LRW"){
+    
+    Dist5_LRW_X<-subset(Dist5_LRW, Dist5_LRW$InputID==SyntheticPop[i,"RCell"])
+    listofcells<-as.list(Dist5_LRW_X[,2])
+    listofdistances<-as.list(Dist5_LRW_X[,3])
+    listofprobs <- vector(mode = "list")
+    for(t in 1:nrow(Dist5_LRW_X)){
+      listofprobs[[length(listofprobs)+1]]<-1/listofdistances[[t]]
+    }
+    SyntheticPop[i,"WCell"]<-sample(listofcells, 1, prob=c(listofprobs))
+    }}
+rm(Dist5_LRW)
+rm(Dist5_LRW_X)
+
+listofdistances<-vector(mode = "list")
+listofcells<-vector(mode = "list")
+listofprobs <- vector(mode = "list")
+
+Dist5_OW<-subset(DistanceMatrix, DistanceMatrix$Destinat_1==5)
+Dist5_OW<-subset(Dist5_OW, Dist5_OW$Destinatio=="OW")
+for(i in 1:nrow(SyntheticPop)){
+  if(is.na(SyntheticPop[i,"WorkDist"])==FALSE & SyntheticPop[i,"WorkDist"]=="5" & is.na(SyntheticPop[i,"CellClass"])==FALSE & SyntheticPop[i,"CellClass"]=="OW"){
+    
+    Dist5_OW_X<-subset(Dist5_OW, Dist5_OW$InputID==SyntheticPop[i,"RCell"])
+    listofcells<-as.list(Dist5_OW_X[,2])
+    listofdistances<-as.list(Dist5_OW_X[,3])
+    listofprobs <- vector(mode = "list")
+    for(t in 1:nrow(Dist5_OW_X)){
+      listofprobs[[length(listofprobs)+1]]<-1/listofdistances[[t]]
+    }
+    SyntheticPop[i,"WCell"]<-sample(listofcells, 1, prob=c(listofprobs))
+    }}
+rm(Dist5_OW)
+rm(Dist5_OW_X)
+
+
+listofdistances<-vector(mode = "list")
+listofcells<-vector(mode = "list")
+listofprobs <- vector(mode = "list")
+
+Dist5_MW<-subset(DistanceMatrix, DistanceMatrix$Destinat_1==5)
+Dist5_MW<-subset(Dist5_MW, Dist5_MW$Destinatio=="MW")
+for(i in 1:nrow(SyntheticPop)){
+  if(is.na(SyntheticPop[i,"WorkDist"])==FALSE & SyntheticPop[i,"WorkDist"]=="5" & is.na(SyntheticPop[i,"CellClass"])==FALSE & SyntheticPop[i,"CellClass"]=="MW"){
+    
+    Dist5_MW_X<-subset(Dist5_MW, Dist5_MW$InputID==SyntheticPop[i,"RCell"])
+    listofcells<-as.list(Dist5_MW_X[,2])
+    listofdistances<-as.list(Dist5_MW_X[,3])
+    listofprobs <- vector(mode = "list")
+    for(t in 1:nrow(Dist5_MW_X)){
+      listofprobs[[length(listofprobs)+1]]<-1/listofdistances[[t]]
+    }
+    SyntheticPop[i,"WCell"]<-sample(listofcells, 1, prob=c(listofprobs))
+    }}
+rm(Dist5_MW)
+rm(Dist5_MW_X)
+
+Dist6_HRW<-subset(DistanceMatrix, DistanceMatrix$Destinat_1==6)
+Dist6_HRW<-subset(Dist6_HRW, Dist6_HRW$Destinatio=="HRW")
+for(i in 1:nrow(SyntheticPop)){
+  if(is.na(SyntheticPop[i,"WorkDist"])==FALSE & SyntheticPop[i,"WorkDist"]=="6" & is.na(SyntheticPop[i,"CellClass"])==FALSE & SyntheticPop[i,"CellClass"]=="HRW"){
+    Dist6_HRW_X<-subset(Dist6_HRW, Dist6_HRW$InputID==SyntheticPop[i,"RCell"])
+    listofcells<-as.list(Dist6_HRW_X[,2])
+    listofdistances<-as.list(Dist6_HRW_X[,3])
+    listofprobs <- vector(mode = "list")
+    for(t in 1:nrow(Dist6_HRW_X)){
+      listofprobs[[length(listofprobs)+1]]<-1/listofdistances[[t]]
+    }
+    SyntheticPop[i,"WCell"]<-sample(listofcells, 1, prob=c(listofprobs))
+  }}
+
+
+listofdistances<-vector(mode = "list")
+listofcells<-vector(mode = "list")
+listofprobs <- vector(mode = "list")
+
+Dist6_LRW<-subset(DistanceMatrix, DistanceMatrix$Destinat_1==6)
+Dist6_LRW<-subset(Dist6_LRW, Dist6_LRW$Destinatio=="LRW")
+for(i in 1:nrow(SyntheticPop)){
+  if(is.na(SyntheticPop[i,"WorkDist"])==FALSE & SyntheticPop[i,"WorkDist"]=="6" & is.na(SyntheticPop[i,"CellClass"])==FALSE & SyntheticPop[i,"CellClass"]=="LRW"){
+    
+    Dist6_LRW_X<-subset(Dist6_LRW, Dist6_LRW$InputID==SyntheticPop[i,"RCell"])
+    listofcells<-as.list(Dist6_LRW_X[,2])
+    listofdistances<-as.list(Dist6_LRW_X[,3])
+    listofprobs <- vector(mode = "list")
+    for(t in 1:nrow(Dist6_LRW_X)){
+      listofprobs[[length(listofprobs)+1]]<-1/listofdistances[[t]]
+    }
+    SyntheticPop[i,"WCell"]<-sample(listofcells, 1, prob=c(listofprobs))
+    }}
+rm(Dist6_LRW)
+rm(Dist6_LRW_X)
+
+listofdistances<-vector(mode = "list")
+listofcells<-vector(mode = "list")
+listofprobs <- vector(mode = "list")
+
+Dist6_OW<-subset(DistanceMatrix, DistanceMatrix$Destinat_1==6)
+Dist6_OW<-subset(Dist6_OW, Dist6_OW$Destinatio=="OW")
+for(i in 1:nrow(SyntheticPop)){
+  if(is.na(SyntheticPop[i,"WorkDist"])==FALSE & SyntheticPop[i,"WorkDist"]=="6" & is.na(SyntheticPop[i,"CellClass"])==FALSE & SyntheticPop[i,"CellClass"]=="OW"){
+    
+    Dist6_OW_X<-subset(Dist6_OW, Dist6_OW$InputID==SyntheticPop[i,"RCell"])
+    listofcells<-as.list(Dist6_OW_X[,2])
+    listofdistances<-as.list(Dist6_OW_X[,3])
+    listofprobs <- vector(mode = "list")
+    for(t in 1:nrow(Dist6_OW_X)){
+      listofprobs[[length(listofprobs)+1]]<-1/listofdistances[[t]]
+    }
+    SyntheticPop[i,"WCell"]<-sample(listofcells, 1, prob=c(listofprobs))
+    }}
+rm(Dist6_OW)
+rm(Dist6_OW_X)
+
+
+listofdistances<-vector(mode = "list")
+listofcells<-vector(mode = "list")
+listofprobs <- vector(mode = "list")
+
+Dist6_MW<-subset(DistanceMatrix, DistanceMatrix$Destinat_1==6)
+Dist6_MW<-subset(Dist6_MW, Dist6_MW$Destinatio=="MW")
+for(i in 1:nrow(SyntheticPop)){
+  if(is.na(SyntheticPop[i,"WorkDist"])==FALSE & SyntheticPop[i,"WorkDist"]=="6" & is.na(SyntheticPop[i,"CellClass"])==FALSE & SyntheticPop[i,"CellClass"]=="MW"){
+    
+    Dist6_MW_X<-subset(Dist6_MW, Dist6_MW$InputID==SyntheticPop[i,"RCell"])
+    listofcells<-as.list(Dist6_MW_X[,2])
+    listofdistances<-as.list(Dist6_MW_X[,3])
+    listofprobs <- vector(mode = "list")
+    for(t in 1:nrow(Dist6_MW_X)){
+      listofprobs[[length(listofprobs)+1]]<-1/listofdistances[[t]]
+    }
+    SyntheticPop[i,"WCell"]<-sample(listofcells, 1, prob=c(listofprobs))
+    }}
+rm(Dist6_MW)
+rm(Dist6_MW_X)
+
+Dist7_HRW<-subset(DistanceMatrix, DistanceMatrix$Destinat_1==7)
+Dist7_HRW<-subset(Dist7_HRW, Dist7_HRW$Destinatio=="HRW")
+for(i in 1:nrow(SyntheticPop)){
+  if(is.na(SyntheticPop[i,"WorkDist"])==FALSE & SyntheticPop[i,"WorkDist"]=="7" & is.na(SyntheticPop[i,"CellClass"])==FALSE & SyntheticPop[i,"CellClass"]=="HRW"){
+    Dist7_HRW_X<-subset(Dist7_HRW, Dist7_HRW$InputID==SyntheticPop[i,"RCell"])
+    listofcells<-as.list(Dist7_HRW_X[,2])
+    listofdistances<-as.list(Dist7_HRW_X[,3])
+    listofprobs <- vector(mode = "list")
+    for(t in 1:nrow(Dist7_HRW_X)){
+      listofprobs[[length(listofprobs)+1]]<-1/listofdistances[[t]]
+    }
+    SyntheticPop[i,"WCell"]<-sample(listofcells, 1, prob=c(listofprobs))
+  }}
+
+
+listofdistances<-vector(mode = "list")
+listofcells<-vector(mode = "list")
+listofprobs <- vector(mode = "list")
+
+Dist7_LRW<-subset(DistanceMatrix, DistanceMatrix$Destinat_1==7)
+Dist7_LRW<-subset(Dist7_LRW, Dist7_LRW$Destinatio=="LRW")
+for(i in 1:nrow(SyntheticPop)){
+  if(is.na(SyntheticPop[i,"WorkDist"])==FALSE & SyntheticPop[i,"WorkDist"]=="7" & is.na(SyntheticPop[i,"CellClass"])==FALSE & SyntheticPop[i,"CellClass"]=="LRW"){
+    
+    Dist7_LRW_X<-subset(Dist7_LRW, Dist7_LRW$InputID==SyntheticPop[i,"RCell"])
+    listofcells<-as.list(Dist7_LRW_X[,2])
+    listofdistances<-as.list(Dist7_LRW_X[,3])
+    listofprobs <- vector(mode = "list")
+    for(t in 1:nrow(Dist7_LRW_X)){
+      listofprobs[[length(listofprobs)+1]]<-1/listofdistances[[t]]
+    }
+    SyntheticPop[i,"WCell"]<-sample(listofcells, 1, prob=c(listofprobs))
+    }}
+rm(Dist7_LRW)
+rm(Dist7_LRW_X)
+
+listofdistances<-vector(mode = "list")
+listofcells<-vector(mode = "list")
+listofprobs <- vector(mode = "list")
+
+Dist7_OW<-subset(DistanceMatrix, DistanceMatrix$Destinat_1==7)
+Dist7_OW<-subset(Dist7_OW, Dist7_OW$Destinatio=="OW")
+for(i in 1:nrow(SyntheticPop)){
+  if(is.na(SyntheticPop[i,"WorkDist"])==FALSE & SyntheticPop[i,"WorkDist"]=="7" & is.na(SyntheticPop[i,"CellClass"])==FALSE & SyntheticPop[i,"CellClass"]=="OW"){
+    
+    Dist7_OW_X<-subset(Dist7_OW, Dist7_OW$InputID==SyntheticPop[i,"RCell"])
+    listofcells<-as.list(Dist7_OW_X[,2])
+    listofdistances<-as.list(Dist7_OW_X[,3])
+    listofprobs <- vector(mode = "list")
+    for(t in 1:nrow(Dist7_OW_X)){
+      listofprobs[[length(listofprobs)+1]]<-1/listofdistances[[t]]
+    }
+    SyntheticPop[i,"WCell"]<-sample(listofcells, 1, prob=c(listofprobs))
+    }}
+rm(Dist7_OW)
+rm(Dist7_OW_X)
+
+
+listofdistances<-vector(mode = "list")
+listofcells<-vector(mode = "list")
+listofprobs <- vector(mode = "list")
+
+Dist7_MW<-subset(DistanceMatrix, DistanceMatrix$Destinat_1==7)
+Dist7_MW<-subset(Dist7_MW, Dist7_MW$Destinatio=="MW")
+for(i in 1:nrow(SyntheticPop)){
+  if(is.na(SyntheticPop[i,"WorkDist"])==FALSE & SyntheticPop[i,"WorkDist"]=="7" & is.na(SyntheticPop[i,"CellClass"])==FALSE & SyntheticPop[i,"CellClass"]=="MW"){
+    
+    Dist7_MW_X<-subset(Dist7_MW, Dist7_MW$InputID==SyntheticPop[i,"RCell"])
+    listofcells<-as.list(Dist7_MW_X[,2])
+    listofdistances<-as.list(Dist7_MW_X[,3])
+    listofprobs <- vector(mode = "list")
+    for(t in 1:nrow(Dist7_MW_X)){
+      listofprobs[[length(listofprobs)+1]]<-1/listofdistances[[t]]
+    }
+    SyntheticPop[i,"WCell"]<-sample(listofcells, 1, prob=c(listofprobs))
+    }}
+rm(Dist7_MW)
+rm(Dist7_MW_X)
+
+Dist8_HRW<-subset(DistanceMatrix, DistanceMatrix$Destinat_1==8)
+Dist8_HRW<-subset(Dist8_HRW, Dist8_HRW$Destinatio=="HRW")
+for(i in 1:nrow(SyntheticPop)){
+  if(is.na(SyntheticPop[i,"WorkDist"])==FALSE & SyntheticPop[i,"WorkDist"]=="8" & is.na(SyntheticPop[i,"CellClass"])==FALSE & SyntheticPop[i,"CellClass"]=="HRW"){
+    Dist8_HRW_X<-subset(Dist8_HRW, Dist8_HRW$InputID==SyntheticPop[i,"RCell"])
+    listofcells<-as.list(Dist8_HRW_X[,2])
+    listofdistances<-as.list(Dist8_HRW_X[,3])
+    listofprobs <- vector(mode = "list")
+    for(t in 1:nrow(Dist8_HRW_X)){
+      listofprobs[[length(listofprobs)+1]]<-1/listofdistances[[t]]
+    }
+    SyntheticPop[i,"WCell"]<-sample(listofcells, 1, prob=c(listofprobs))
+  }}
+
+
+listofdistances<-vector(mode = "list")
+listofcells<-vector(mode = "list")
+listofprobs <- vector(mode = "list")
+
+Dist8_LRW<-subset(DistanceMatrix, DistanceMatrix$Destinat_1==8)
+Dist8_LRW<-subset(Dist8_LRW, Dist8_LRW$Destinatio=="LRW")
+for(i in 1:nrow(SyntheticPop)){
+  if(is.na(SyntheticPop[i,"WorkDist"])==FALSE & SyntheticPop[i,"WorkDist"]=="8" & is.na(SyntheticPop[i,"CellClass"])==FALSE & SyntheticPop[i,"CellClass"]=="LRW"){
+    
+    Dist8_LRW_X<-subset(Dist8_LRW, Dist8_LRW$InputID==SyntheticPop[i,"RCell"])
+    listofcells<-as.list(Dist8_LRW_X[,2])
+    listofdistances<-as.list(Dist8_LRW_X[,3])
+    listofprobs <- vector(mode = "list")
+    for(t in 1:nrow(Dist8_LRW_X)){
+      listofprobs[[length(listofprobs)+1]]<-1/listofdistances[[t]]
+    }
+    SyntheticPop[i,"WCell"]<-sample(listofcells, 1, prob=c(listofprobs))
+    }}
+rm(Dist8_LRW)
+rm(Dist8_LRW_X)
+
+listofdistances<-vector(mode = "list")
+listofcells<-vector(mode = "list")
+listofprobs <- vector(mode = "list")
+
+Dist8_OW<-subset(DistanceMatrix, DistanceMatrix$Destinat_1==8)
+Dist8_OW<-subset(Dist8_OW, Dist8_OW$Destinatio=="OW")
+for(i in 1:nrow(SyntheticPop)){
+  if(is.na(SyntheticPop[i,"WorkDist"])==FALSE & SyntheticPop[i,"WorkDist"]=="8" & is.na(SyntheticPop[i,"CellClass"])==FALSE & SyntheticPop[i,"CellClass"]=="OW"){
+    
+    Dist8_OW_X<-subset(Dist8_OW, Dist8_OW$InputID==SyntheticPop[i,"RCell"])
+    listofcells<-as.list(Dist8_OW_X[,2])
+    listofdistances<-as.list(Dist8_OW_X[,3])
+    listofprobs <- vector(mode = "list")
+    for(t in 1:nrow(Dist8_OW_X)){
+      listofprobs[[length(listofprobs)+1]]<-1/listofdistances[[t]]
+    }
+    SyntheticPop[i,"WCell"]<-sample(listofcells, 1, prob=c(listofprobs))
+    }}
+rm(Dist8_OW)
+rm(Dist8_OW_X)
+
+
+listofdistances<-vector(mode = "list")
+listofcells<-vector(mode = "list")
+listofprobs <- vector(mode = "list")
+
+Dist8_MW<-subset(DistanceMatrix, DistanceMatrix$Destinat_1==8)
+Dist8_MW<-subset(Dist8_MW, Dist8_MW$Destinatio=="MW")
+for(i in 1:nrow(SyntheticPop)){
+  if(is.na(SyntheticPop[i,"WorkDist"])==FALSE & SyntheticPop[i,"WorkDist"]=="8" & is.na(SyntheticPop[i,"CellClass"])==FALSE & SyntheticPop[i,"CellClass"]=="MW"){
+    
+    Dist8_MW_X<-subset(Dist8_MW, Dist8_MW$InputID==SyntheticPop[i,"RCell"])
+    listofcells<-as.list(Dist8_MW_X[,2])
+    listofdistances<-as.list(Dist8_MW_X[,3])
+    listofprobs <- vector(mode = "list")
+    for(t in 1:nrow(Dist8_MW_X)){
+      listofprobs[[length(listofprobs)+1]]<-1/listofdistances[[t]]
+    }
+    SyntheticPop[i,"WCell"]<-sample(listofcells, 1, prob=c(listofprobs))
+    }}
+rm(Dist8_MW)
+rm(Dist8_MW_X)
+
+rm(Dist1_HRW)
+rm(Dist1_HRW_X)
+rm(Dist2_HRW)
+rm(Dist2_HRW_X)
+rm(Dist3_HRW)
+rm(Dist3_HRW_X)
+rm(Dist4_HRW)
+rm(Dist4_HRW_X)
+rm(Dist5_HRW)
+rm(Dist5_HRW_X)
+rm(Dist6_HRW)
+rm(Dist6_HRW_X)
+rm(Dist7_HRW)
+rm(Dist7_HRW_X)
+rm(Dist8_HRW)
+rm(Dist8_HRW_X)
+
+
+```
+
