@@ -1,6 +1,6 @@
 ############## Code for the assignment of cells of workplace to each eligible individual in the synthetic population
 The code assigns a cell to each individual in the synthetic population, while differentiating among NACE classes that are coherent among data sources (no gravitational element)
-and ones that are not coherent (and are thus assigned exploiting a gravitational factor for the last mile).
+and ones that are not coherent (and are thus assigned exploiting a gravitational factor).
 
 It is possible to download the .RData and run the .Rmd code as they are, the working cells for the synthetic population of Tallinn will be assigned (when eligible)
 
