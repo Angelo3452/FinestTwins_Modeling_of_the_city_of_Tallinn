@@ -6,13 +6,21 @@ The Tallinn dataset is provided as open source, it may be found in the folder "d
 The dataset is composed by 23 variables, briefly defined in the following:    
 
 District* -->	District of residence
+
 Household_id*	--> ID of the household
+
 Household_size*	--> Size of the household
+
 Age interval*	-->	Age intervals: - Discretized for privacy reasons
+
 Gender*	-->	1 - Female; 2 - Male
+
 Head_of_the_household*	-->	Boolean for the head of the household
+
 ID*	-->	Individual_id
+
 Subdistrict*	-->	Subdistrict of residence - numerical id (for the correspondance between ids and subdistricts, please check the dedicated description on github)
+
 IFM**	-->	Average income per family member - 4 qualitative classes to preserve anonimity
 Blicense**	-->	Boolean describing if the individual has (1) or does not have (0) a B driving license
 CarOwnership***	-->	Number of cars owned within the household
