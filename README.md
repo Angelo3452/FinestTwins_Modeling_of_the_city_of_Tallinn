@@ -22,19 +22,33 @@ ID*	-->	Individual_id
 Subdistrict*	-->	Subdistrict of residence - numerical id (for the correspondance between ids and subdistricts, please check the dedicated description on github)
 
 IFM**	-->	Average income per family member - 4 qualitative classes to preserve anonimity
+
 Blicense**	-->	Boolean describing if the individual has (1) or does not have (0) a B driving license
+
 CarOwnership***	-->	Number of cars owned within the household
+
 Alicense**	-->	As in B license
+
 MotoOwnership**	-->	Number of motorcycle owned within the household
+
 C.Dlicense**	-->	As in B license
+
 BikeOwnership**	-->	Number of bikes owned within the household
+
 RCell***	-->	Numerical id for the cell of residence - the map of the cells is provided on a separate document on github
+
 KDist***	-->	District of the kindergarden - for individuals with age < 6
+
 SchDist***	-->	District of the educational institution (either basic, upper or university)
+
 SchCell***	-->	Numerical id for the cell of the attended educational institution
+
 Occupation***	-->	Employment role
+
 EMTAK***	-->	EMTAK field of occupation (national equivalent of the NACE classification)
+
 WorkDist***	-->	District of the workplace
+
 WCell***	-->	Numerical id for the cell of the workplace
 
 The asterisks near the variables represents how the variables were obtained. One asterisk indicates the variables produced through SimPop, they represent the household structures of the survey and their reliability is high, being calibrated against the city statistics. Two asterisks' variables are instead obtained through multinomial logistic regression, they reproduce faithfully the distributions present in the survey but could not be validated due to lack of public data. A notable exception is IFM, which was validated against the distribution obtained from the municipality. Three asterisks represent variables added on the basis of discrete probability distributions and, when relevant, land use information.
