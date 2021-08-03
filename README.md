@@ -59,6 +59,6 @@ WCell***	-->	Numerical id for the cell of the workplace
 The asterisks near the variables represents how the variables were obtained. One asterisk indicates the variables produced through SimPop, they represent the household structures of the survey and their reliability is high, being calibrated against the city statistics. Two asterisks' variables are instead obtained through multinomial logistic regression, they reproduce faithfully the distributions present in the survey but could not be validated due to lack of public data. A notable exception is IFM, which was validated against the distribution obtained from the municipality. Three asterisks represent variables added on the basis of discrete probability distributions and, when relevant, land use information.
 
 
-# ACKNOWLEDGEMENTS 
+# Acknowledgments 
 This research is funded by the FINEST Twins Center of Excellence (H2020 Europe-an Union funding for Research & Innovation grant 856602). 
 The authors would like to thank Prof. Dago Antov from Taltech for sharing the travel survey exploited in this work. Moreover, the authors are grateful to the Tallinn Municipality and to all the related public bodies who supported this research by sharing data. Finally, the authors would like to thank all the partners and stakeholders involved in the FinestTwins Centre of Excellence. 
