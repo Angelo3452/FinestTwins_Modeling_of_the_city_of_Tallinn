@@ -2,6 +2,9 @@
 Synthetic population for the city of Tallinn - The reported results were obtained within the activities of the FinestTwins project (http://www.finesttwins.eu/)
 This work is licensed with Creative Commons — Attribution 4.0 International — CC BY 4.0
 
+# How to cite
+Agriesti, S.; Roncoli, C.; Nahmias-Biran, B.-h. Assignment of a Synthetic Population for Activity-Based Modeling Employing Publicly Available Data. ISPRS Int. J. Geo-Inf. 2022, 11, 148. https://doi.org/10.3390/ijgi11020148
+
 # Dataset
 The Tallinn dataset is provided as open source, it may be found in the folder "dataset" as .csv file. There, also some relevant distributions are reported as summary. The folders "ResidentialAssignment" and "WorkplaceAssignment" contain two ready-for-use examples to assign either the residence cell (500x500 m) or the workplace one to the synthetic population. The folder "SpatialMap" includes a .gpkg file as Qgis spatial map, some representative maps are also printed as .pdf.
 
