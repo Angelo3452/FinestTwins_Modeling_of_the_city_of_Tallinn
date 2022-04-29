@@ -1,7 +1,7 @@
 ############# Tallinn Synthetic Population (2015)
 In this folder, the dataset containing the synthetic population is uploaded and can be downloaded as Tallinn_Synthetic_Population_2015.csv
 It includes 23 variables for each individual within the population:
-- District: the district of residence; 1_Lasnamäe, 2_Mustamäe, 3_Põhja-Tallinna, 4_Nõmme, 5_Sitsi, 6_Pirita, 7_Kesklinna, 8_Haabersti
+- District: the district of residence; 1_Lasnamäe, 2_Mustamäe, 3_Põhja-Tallinna, 4_Nõmme, 5_Kristiine, 6_Pirita, 7_Kesklinna, 8_Haabersti
 - Household_id: Identifier for each household within the synthetic population
 - Household_Size: Number of individual in the household
 - Gender: 1_Female, 2_Male
