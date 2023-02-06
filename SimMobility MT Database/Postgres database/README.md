@@ -1,1 +1,1 @@
-The BO algorithm is works through containers, the created image is currently available at https://aaltofi-my.sharepoint.com/:f:/g/personal/serio_agriesti_aalto_fi/EvEirXzGRkdNnA__X_URLeQB-0f0cwZ-anw7AN9_iPNGgA?e=NLfQbx
+The BO algorithm works through containers, the image is currently available at https://aaltofi-my.sharepoint.com/:u:/g/personal/serio_agriesti_aalto_fi/ESEwne5F1EpChg-_ruxBPksBDqg03kcOmXEcf_XBUEwj8g?e=Nw1Nta
