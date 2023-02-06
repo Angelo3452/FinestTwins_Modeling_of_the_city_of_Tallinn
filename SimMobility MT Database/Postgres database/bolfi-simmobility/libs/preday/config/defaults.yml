@@ -1,0 +1,5 @@
+CREATE_PARAM_FILE_IF_MISSING  : true
+PARAM_FILE_EXTENSION  : "lua"
+ACTIVITY_FILE       : "activity_schedule"
+MOCKING_MODE        : false
+EXTERNAL_FEEDBACK_SCRIPT: "libs/preday/external.R"

@@ -1,0 +1,6 @@
+LIB_PATH            : "libs"
+SH_SCRIPTS          : "."
+CONTAINER_HOME_PATH : "."
+CONTAINERIZED       : false
+READ_MEMORY         : false
+

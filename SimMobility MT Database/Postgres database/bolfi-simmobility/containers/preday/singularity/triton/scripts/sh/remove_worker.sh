@@ -1,0 +1,7 @@
+#!/bin/bash
+RUNTIME_PATH=$1
+WORKER_NAME=$2
+WORKER_PATH=${RUNTIME_PATH}/${WORKER_NAME}
+
+# Remove folder
+rm -r ${WORKER_PATH}

@@ -1,0 +1,42 @@
+LIBRARIES           :
+  - "bolfi_v3"
+  - "preday"
+SURROGATE_MODEL_STR : "rf"
+UTILITY_FUNC_STR    : "ei"
+CHANGE_SHARE_ATTRIBUTES : 1.0
+VARIATION_SD        : 0.5
+OBJECT_STORAGE_PATH : "output/preday/city_tallinn_test_run"
+INITIAL_PARAMS_PATH : "data/preday/preday_params_complete_tours_modes_v3.csv"
+OBSERVED_STATS_PATH : "data/preday/tallin_od_weighted_coded.csv"
+WEIGHT_MAP_PATH     : "data/preday/tallinn_od_mask_coded.csv"
+DISTRICT_MAP_PATH   : "data/preday/tallinn_grid_def.csv"
+MODE_BALANCE_PATH   : "data/preday/tallinn_mode_balance.csv"
+WORKERS_POPULATION_PATH: "data/preday/tallinn_population_workers.csv"
+
+SH_SCRIPTS          : "containers/preday/singularity/triton/scripts/sh"
+CONTAINER_HOME_PATH : "containers/preday/singularity/triton"
+CONTAINERIZED       : true
+
+MAX_ITERS           : 500
+METHOD_PARAMS       :
+  RF_NTREE        :
+        - 1000
+        - 3000
+        - 5000
+  RF_NSIZE        : 1
+  RF_MTRY_VOID         :
+        - 23
+READ_MEMORY         : true
+INIT_SAMPLE_SIZE    : 50
+ITER_SAMPLE_SIZE    : 10
+OPTIMISATION_CORES  : 8
+INIT_SAMPLING_FUNC_STR   : "fn_preday_sampling"
+SAMPLING_FUNC_STR   : "fn_sampling_lhs"
+SAMPLING_OPTIMAL_TOLERANCE : 0.5
+INNER_OPTIMIZATION_FUNC_STR : "fn_optimisation_quasi_newthon"
+
+SUBSPACES_NUMBER  : 1
+SUBSPACES_SIZE    : 1.0
+
+PARTIAL_POPULATION      : 0.1
+RELATIVE_OD             : false
