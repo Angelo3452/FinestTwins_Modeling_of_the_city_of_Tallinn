@@ -1,1 +1,0 @@
-The BO algorithm works through containers, the image is currently available at https://aaltofi-my.sharepoint.com/:u:/g/personal/serio_agriesti_aalto_fi/ESEwne5F1EpChg-_ruxBPksBDqg03kcOmXEcf_XBUEwj8g?e=Nw1Nta
