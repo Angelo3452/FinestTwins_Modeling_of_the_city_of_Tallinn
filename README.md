@@ -1,9 +1,16 @@
-# FinestTwins_Tallinn_SyntheticPop
-Synthetic population for the city of Tallinn - The reported results were obtained within the activities of the FinestTwins project (http://www.finesttwins.eu/)
-This work is licensed with Creative Commons — Attribution 4.0 International — CC BY 4.0
+# FinestTwins - Modeling of the city of Tallinn
+The data, models and material shared through this folder are licensed with Creative Commons — Attribution 4.0 International — CC BY 4.0
+
+The work has been carried out within the activities of the FinestTwins project (http://www.finesttwins.eu/)
 
 # How to cite
-Agriesti, S.; Roncoli, C.; Nahmias-Biran, B.-h. Assignment of a Synthetic Population for Activity-Based Modeling Employing Publicly Available Data. ISPRS Int. J. Geo-Inf. 2022, 11, 148. https://doi.org/10.3390/ijgi11020148
+Synthetic population data - Agriesti, S.; Roncoli, C.; Nahmias-Biran, B.-h. Assignment of a Synthetic Population for Activity-Based Modeling Employing Publicly Available Data. ISPRS Int. J. Geo-Inf. 2022, 11, 148. https://doi.org/10.3390/ijgi11020148
+
+Bayesian Optimization algorithm - Agriesti, S.; Kuzmanovski, V.; Hollmén, J.; Roncoli, C.; & Nahmias-Biran, B. -h. A Bayesian Optimization approach for calibrating large-scale activity-based transport models. 2023. arXiv preprint arXiv:2302.03480.
+
+SimMobility MT model - Agriesti,S.; Anashin, P.; Roncoli, C.; Nahmias-Biran, B.-h.Integrating activity-based and traffic assignment models: Methodology and case study application. In MT-ITS 8th International Conference on Models and Technologies for Intelligent Transportation Systems, June 2023, Nice, France.
+
+Aimsun model - Agriesti,S.; Anashin, P.; Roncoli, C.; Nahmias-Biran, B.-h.Integrating activity-based and traffic assignment models: Methodology and case study application. In MT-ITS 8th International Conference on Models and Technologies for Intelligent Transportation Systems, June 2023, Nice, France.
 
 # Dataset
 The Tallinn dataset is provided as open source, it may be found in the folder "dataset" as .csv file. There, also some relevant distributions are reported as summary. The folders "ResidentialAssignment" and "WorkplaceAssignment" contain two ready-for-use examples to assign either the residence cell (500x500 m) or the workplace one to the synthetic population. The folder "SpatialMap" includes a .gpkg file as Qgis spatial map, some representative maps are also printed as .pdf.
@@ -61,4 +68,4 @@ The asterisks near the variables represents how the variables were obtained. One
 
 # Acknowledgments 
 This research is funded by the FINEST Twins Center of Excellence (H2020 Europe-an Union funding for Research & Innovation grant 856602). 
-The authors would like to thank Prof. Dago Antov from Taltech for sharing the travel survey exploited in this work. Moreover, the authors are grateful to the Tallinn Municipality and to all the related public bodies who supported this research by sharing data. Finally, the authors would like to thank all the partners and stakeholders involved in the FinestTwins Centre of Excellence. 
+The authors would like to thank Prof. Dago Antov from Taltech for sharing the travel survey exploited in this work. Moreover, the authors are grateful to the Tallinn Municipality and to all the related public bodies who supported this research by sharing data. Finally, the authors would like to thank all the partners and stakeholders involved in the FinestTwins Centre of Excellence. The authors also thank Aimsun SLU for the support provided in calibrating the model
