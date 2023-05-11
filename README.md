@@ -1,5 +1,5 @@
 # FinestTwins - Modeling of the city of Tallinn
-The data, models and material shared through this folder are licensed with Creative Commons — Attribution 4.0 International — CC BY 4.0
+The data, models and material shared through this folder are licensed under a Creative Commons — Attribution 4.0 License (International) — CC BY 4.0: https://creativecommons.org/licenses/by/4.0/
 
 The work has been carried out within the activities of the FinestTwins project (http://www.finesttwins.eu/)
 
