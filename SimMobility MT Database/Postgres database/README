@@ -1,3 +1,4 @@
 ### List of files
 - 477 parameters: list of all the parameters considered in the calibration process, with their initial values and the maximum and minimum values allowed
 - behavioral parameters: zip files with the result of the calibration process
+- activity_schedule_manual_calibration: a daily activity schedule file result of manual calibration on a 33% sample of the population, uploaded for comparison purposes
