@@ -4,6 +4,10 @@ The data, models and material shared through this folder are licensed under a Cr
 The work has been carried out within the activities of the FinestTwins project (http://www.finesttwins.eu/)
 
 # How to cite
+Aimsun and SimMobility models - Agriesti, S., Roncoli, C., & Nahmias-Biran, B. H. (2025). A simulation-based framework for quantifying potential demand loss due to operational constraints in automated mobility services. Transportation Research Part A: Policy and Practice, 192, 104372.
+
+Aimsun and SimMobility models - Agriesti, S., Roncoli, C., & Nahmias-Biran, B. H. (2025). An Equilibrium-Seeking Search Algorithm for Integrating Large-Scale Activity-Based and Traffic Assignment Models. IEEE Open Journal of Intelligent Transportation Systems.
+
 Synthetic population data - Agriesti, S.; Roncoli, C.; Nahmias-Biran, B.-h. Assignment of a Synthetic Population for Activity-Based Modeling Employing Publicly Available Data. ISPRS Int. J. Geo-Inf. 2022, 11, 148. https://doi.org/10.3390/ijgi11020148
 
 Bayesian Optimization algorithm - Agriesti, S.; Kuzmanovski, V.; Hollmén, J.; Roncoli, C.; & Nahmias-Biran, B. -h. A Bayesian Optimization approach for calibrating large-scale activity-based transport models. 2023. arXiv preprint arXiv:2302.03480.
