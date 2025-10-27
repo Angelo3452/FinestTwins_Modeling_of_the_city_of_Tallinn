@@ -1,0 +1,187 @@
+library(tidyverse)
+library(reticulate)
+library("jsonlite")
+library("tidyverse")
+library("lubridate")
+
+statistics_rep1 <- read.csv("~/PycharmProjects/AV/statistics_rep.csv")
+
+print("calculating waiting times")
+
+accepted <- statistics_rep1 %>% subset(statistics_rep1$state=="Travelling to origin")
+pickup <- statistics_rep1 %>% subset(statistics_rep1$state=="At pickup")
+accepted <- accepted[c("veh.ID","time", "requst.id")]
+pickup <- pickup[c("veh.ID", "time", "requst.id")]
+
+accepted<-merge(accepted, pickup, by = "requst.id", all.x = TRUE)
+#print("the number of trips to origin that does not arrive at pickup is:")
+#which(is.na(accepted$time.y)==TRUE)
+accepted$time.x<-as.POSIXct(accepted$time.x, format='%H:%M:%S')
+accepted$time.y<-as.character(accepted$time.y)
+
+tobedeleted<-c()
+missingpickups<-which(is.na(accepted$time.y)==TRUE)
+for(i in 1:length(missingpickups)){
+if(hour(accepted[missingpickups[i],"time.x"])>18){tobedeleted[[length(tobedeleted)+1]]<-missingpickups[i]}else{accepted[missingpickups[i],"time.y"]<-"19:15:00"}
+}
+if(length(tobedeleted)>0){accepted<-accepted[-c(tobedeleted),]}
+
+accepted$time.y<-as.POSIXct(accepted$time.y, format='%H:%M:%S')
+accepted$wt <- difftime(accepted$time.y,accepted$time.x)
+req <- fromJSON("/home/angelo/Desktop/Aimsun Ride/samples/Samples/CampNou/Scenarios/ScenarioDRT-Taxi/request_pm.json", flatten=TRUE)
+accepted<-merge(accepted, req, by.x = "requst.id", by.y = "id", all.x = TRUE, all.y = TRUE)
+accepted <- accepted[c("veh.ID.x","time.x", "time.y","wt","origin.object","destination.object","requst.id")]
+
+### fix: unserved requests in served centroids still have to negatively impact wt
+#accepted[which(is.na(accepted$wt)==TRUE),"wt"]<-"1200 secs"
+### fix2: if you have to make an hypothesis, just take these out from the average calculation instead of putting bullcrap numbers
+accepted<-accepted[-c(which(is.na(accepted$wt)==TRUE)),]
+
+
+req_fin_avg<-accepted %>%
+  group_by(origin.object) %>%
+  summarise_at(vars(wt), list(name = mean)) #average wt by origin
+
+print("the average waiting time for pm is:")
+#print(mean(req_fin_avg$name))
+print(mean(accepted$wt, na.rm=TRUE))
+
+
+accepted$origin.object<-as.character(accepted$origin.object)
+#print("the number of origins with an aTaxi trip is:")
+#print(length(unique(accepted$origin.object)))
+
+
+##################################################################################################
+# Do I even need this part? Yes, merge to garages to have 616 origins -> include zones with no request
+##################################################################################################
+
+garages <- c(516, 517, 151, 523, 568, 217, 546, 440, 119, 66, 28, 385, 154, 518, 529, 54, 15, 490, 170, 130, 145, 531, 431, 615, 65, 564, 159, 215, 289, 403, 538, 24, 133, 553, 277, 124, 108, 418, 484, 368, 204, 148, 394, 310, 216, 367, 135, 114, 4, 191, 274, 37, 429, 112, 382, 577, 601, 45, 284, 402, 64, 409, 180, 27, 407, 160, 537, 52, 563, 416, 565, 421, 322, 554, 597, 526, 198, 22, 425, 40, 29, 245, 486, 308, 282, 48, 540, 337, 547, 539, 392, 291, 465, 432, 187, 150, 34, 72, 536, 123, 544, 556, 347, 457, 111, 395, 369, 91, 84, 137, 3, 442, 552, 598, 175, 422, 370, 299, 21, 562, 341, 157, 181, 413, 120, 448, 76, 493, 603, 511, 524, 50, 235, 162, 339, 445, 278, 109, 36, 426, 125, 397, 58, 311, 411, 471, 177, 155, 458, 31, 579, 102, 296, 317, 462, 433, 244, 482, 476, 233, 330, 513, 158, 307, 192, 494, 377, 75, 279, 497, 545, 190, 242, 86, 364, 503, 127, 90, 464, 460, 110, 92, 14, 2, 588, 165, 228, 412, 472, 570, 316, 399, 351, 83, 261, 223, 80, 247, 106, 141, 96, 360, 525, 98, 567, 356, 572, 334, 355, 46, 443, 97, 81, 501, 275, 176, 260, 122, 209, 586, 79, 306, 480, 384, 391, 436, 272, 166, 146, 304, 548, 25, 269, 262, 463, 152, 283, 372, 475, 366, 254, 473, 101, 179, 302, 469, 573, 444, 182, 239, 264, 257, 259, 599, 414, 361, 338, 376, 89, 82, 352, 63, 335, 276, 268, 188, 612, 467, 346, 453, 423, 51, 406, 288, 139, 195, 237, 555, 200, 305, 398, 374, 1, 468, 530, 250, 218, 510, 241, 118, 303, 266, 100, 401, 246, 285, 142, 332, 117, 49, 270, 232, 587, 549, 437, 69, 325, 134, 527, 26, 35, 478, 474, 604, 73, 485, 329, 39, 607, 68, 578, 318, 492, 522, 189, 202, 461, 608, 327, 606, 584, 580, 326, 199, 435, 499, 309, 600, 400, 500, 427, 345, 434, 331, 609, 550, 455, 569, 56, 115, 602, 78, 428, 219, 446, 591, 430, 226, 143, 373, 515, 521, 596, 38, 528, 44, 8, 313, 298, 30, 574, 466, 222, 388, 328, 229, 208, 343, 243, 438, 354, 13, 498, 171, 378, 533, 281, 104, 212, 320, 183, 470, 420, 43, 353, 205, 348, 344, 451, 379, 454, 128, 57, 105, 575, 380, 559, 419, 258, 479, 410, 333, 136, 103, 59, 210, 535, 358, 163, 507, 415, 456, 543, 93, 520, 405, 595, 74, 505, 532, 168, 10, 447, 576, 61, 301, 67, 362, 295, 77, 236, 144, 16, 560, 393, 164, 213, 491, 129, 512, 113, 156, 396, 506, 23, 121, 290, 294, 265, 178, 60, 88, 488, 417, 551, 349, 169, 365, 558, 196, 201, 449, 613, 424, 561, 439, 207, 340, 252, 315, 557, 459, 300, 324, 240, 271, 42, 203, 495, 336, 221, 312, 357, 263, 55, 585, 293, 267, 581, 197, 19, 594, 234, 383, 172, 481, 592, 404, 230, 314, 614, 487, 161, 319, 321, 359, 280, 18, 611, 11, 220, 256, 389, 206, 20, 450, 381, 342, 387, 363, 138, 6, 583, 185, 140, 225, 610, 107, 251, 616, 147, 116, 323, 508, 566, 519, 589, 32, 390, 590, 7, 287, 582, 53, 477, 95, 441, 386, 131, 193, 184, 593, 483, 12, 238, 70, 255, 47, 541, 214, 286, 87, 9, 211, 605, 149, 514, 153, 542, 273, 167, 186, 62, 292, 253, 126, 496, 94, 534, 99, 502, 375, 224, 408, 17, 350, 571, 71, 194, 297, 85, 174, 173, 231, 33, 41, 489, 5, 504, 509)
+
+wt <- data.frame(garages)
+colnames(wt)[1]<-"origins"
+req_fin_avg$origin.object<-gsub("GARAGE ","",as.character(req_fin_avg$origin.object))
+req_fin_avg$origin.object<-as.integer(req_fin_avg$origin.object)
+colnames(req_fin_avg)[1]<-"origins"
+wt <- merge(wt, req_fin_avg, all.x = TRUE)
+
+
+#missing_origins<-as.integer(missing_origins)
+#wt[which(wt$origins %in% missing_origins),"name"]<-3600 # 1 h delay to the ones not served within the hour in fully inserved centroids
+
+## but we have 610 garages, wherever there were no requests we can keep an estimate of 10 minutes as waiting times, for the next round of iterations
+sink('/home/angelo/PycharmProjects/AV/Data/pm_wtgarages.txt')
+cat(as.character(mean(wt$name, na.rm=TRUE)))
+sink()
+wt[which(is.na(wt$name) == TRUE),"name"]<-mean(accepted$wt, na.rm=TRUE)
+
+
+
+
+
+req_fin_avg$name<-as.integer(req_fin_avg$name)
+colnames(req_fin_avg)[2]<-"delay"
+#list <- req_fin_avg %>% count(req_fin_avg$delay)
+png(filename="/home/angelo/PycharmProjects/AV/Data/Gwtcountpm.png", width = 1600, height = 1200, pointsize=30)
+hist(req_fin_avg$delay/60, , main='Distribution of wt', xlab='wt [minutes]', col='orange',breaks=80, family = "serif", xlim = c(0,80))
+#plot(list)
+dev.off()
+subset<-subset(accepted, is.na(accepted$wt)==FALSE)
+subset$wt<-as.numeric(subset$wt)
+png(filename="/home/angelo/PycharmProjects/AV/Data/wtcountpm.png", width = 1600, height = 1200, pointsize=30)
+hist(subset$wt/60, , main='Distribution of wt', xlab='wt [minutes]', col='orange',breaks=80, family = "serif", xlim = c(0,80))
+#plot(list)
+dev.off()
+sink('/home/angelo/PycharmProjects/AV/Data/avg_pm_wt.txt')
+cat(as.character(mean(accepted$wt, na.rm=TRUE)))
+sink()
+write.csv(req_fin_avg, '/home/angelo/PycharmProjects/AV/Data/pm_wt.csv')
+
+library(sf)
+nc <- st_read("/home/angelo/Desktop/qgis centroids/centroids_area.shp")
+nc<-merge(nc, wt, by.x="eid",by.y="origins", all.x=TRUE)
+colnames(nc)[6]<-"Waiting_time"
+pl<-nc %>% 
+  ggplot() +
+  geom_sf(aes(fill = Waiting_time)) + scale_fill_gradientn(colours = c("lightgreen", "darkgreen","orange","red", "darkred")) + theme(text = element_text(size = 25, family="Times"))
+png(filename="/home/angelo/PycharmProjects/AV/Data/wt_pm_map.png", width = 1600, height = 1200, pointsize=30)
+plot(pl)
+dev.off()
+
+###################################################################################################
+#                                            IVT
+###################################################################################################
+
+pickup <- statistics_rep1 %>% subset(statistics_rep1$state=="At pickup")
+delivery <- statistics_rep1 %>% subset(statistics_rep1$state=="At delivery")
+pickup <- pickup[c("veh.ID", "time", "requst.id")]
+delivery <- delivery[c("veh.ID","time", "requst.id")]
+
+pickup<-merge(pickup, delivery, by = "requst.id", all.x = TRUE) #nope, same veh does more trips
+pickup[,"time.y"]<-as.character(pickup[,"time.y"])
+pickup$time.x<-as.POSIXct(pickup$time.x, format='%H:%M:%S')
+
+tobedeleted<-c()
+missingdeliveries<-which(is.na(pickup$time.y)==TRUE)
+for(i in 1:length(missingdeliveries)){
+if(hour(pickup[missingdeliveries[i],"time.x"])>18 & minute(pickup[missingdeliveries[i],"time.x"]) > 45){tobedeleted[[length(tobedeleted)+1]]<-missingdeliveries[i]}else{pickup[missingdeliveries[i],"time.y"]<-"19:15:00"}
+}
+if(length(tobedeleted)>0){pickup<-pickup[-c(tobedeleted),]}
+#pickup[which(is.na(pickup$time.y)==TRUE),"time.y"]<-"10:30:00"
+
+pickup$time.y<-as.POSIXct(pickup$time.y, format='%H:%M:%S')
+pickup$ivt <- difftime(pickup$time.y,pickup$time.x)
+
+
+
+
+req <- fromJSON("/home/angelo/Desktop/Aimsun Ride/samples/Samples/CampNou/Scenarios/ScenarioDRT-Taxi/request_pm.json", flatten=TRUE)
+pickup<-merge(pickup, req, by.x = "requst.id", by.y = "id", all.x = TRUE)
+pickup <- pickup[c("veh.ID.x","time.x", "time.y","ivt","origin.object","destination.object","requst.id")]
+
+
+print("the average ivt is:")
+print(mean(pickup$ivt, na.rm=TRUE))
+
+pickup$od <- NA
+pickup$origin.object<-gsub("GARAGE ","",as.character(pickup$origin.object))
+pickup$destination.object<-gsub("GARAGE ","",as.character(pickup$destination.object))
+pickup$od<-paste(pickup$origin.object, pickup$destination.object, sep = "-")
+ivt<-pickup %>%
+  group_by(od) %>%
+  summarise_at(vars(ivt), list(name = mean)) #average ivt by origin
+write.csv(ivt, '/home/angelo/PycharmProjects/AV/Data/pm_ivt.csv') 
+
+
+ivt$name<-as.integer(ivt$name)
+colnames(ivt)[2]<-"tt"
+#list <- ivt %>% count(ivt$tt)
+png(filename="/home/angelo/PycharmProjects/AV/Data/ivtcountpm_av.png", width = 1600, height = 1200, pointsize=30)
+hist(ivt$tt/60, main='Distribution of ivt', xlab='ivt [minutes]', col='steelblue',breaks=80, family = "serif", xlim = c(0,140))
+dev.off()
+sink('/home/angelo/PycharmProjects/AV/Data/avg_pm_ivt.txt')
+cat(as.character(mean(pickup$ivt, na.rm=TRUE)))
+sink()
+write.csv(ivt, '/home/angelo/PycharmProjects/AV/Data/pm_ivt.csv')
+
+
+
+ivt$group<-0
+ivt[which(ivt$tt>0.6*max(ivt$tt)),"group"]<-1
+png(filename="/home/angelo/PycharmProjects/AV/Data/ivt_scatter_pm.png", width = 1600, height = 1200, pointsize=30)
+pl<-ggplot(ivt, aes(od, tt/60)) +
+  geom_point(size=2)+
+  geom_point(aes(color=group)) + theme(axis.text.x=element_blank(), axis.ticks.x=element_blank()) + theme(text = element_text(size = 25, family="Times_New_Roman")) + ylab("ivt [min]") + xlab("od") +
+  theme(legend.position="none")
+plot(pl)
+dev.off()
+
+wt$group<-0
+wt[which(wt$name/60>20),"group"]<-1
+png(filename="/home/angelo/PycharmProjects/AV/Data/wt_scatter_pm.png", width = 1600, height = 1200, pointsize=30)
+pl<-ggplot(wt, aes(origins, name/60)) +
+  geom_point(size=2)+
+  geom_point(aes(color=group))+ ylab("wt [min]") + xlab("origin") + theme(text = element_text(size = 25, family="Times_New_Roman")) +
+  theme(legend.position="none")
+plot(pl)
+dev.off()

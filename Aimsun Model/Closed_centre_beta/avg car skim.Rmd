@@ -1,0 +1,177 @@
+
+library(tidyverse)
+library(tidyr)
+library(stringr)
+library(readxl)
+library(dplyr)
+library(data.table)
+rm(list=ls()) 
+
+
+`_Skim_Car_2412421` <- read.delim("~/PycharmProjects/AV/Data/_Skim_Car_2412421.csv")
+colnames(`_Skim_Car_2412421`)<-gsub("\\X","",as.character(colnames(`_Skim_Car_2412421`)))
+
+library(stringr)
+idtoname <- read.csv("~/PycharmProjects/AV/idtoname.csv", header=FALSE, stringsAsFactors=FALSE)
+dict<-data.frame(matrix(ncol = 1, nrow = ncol(idtoname)))
+dict[c('id', 'name')]<-str_split_fixed(idtoname[1,], ': ', 2) #mapping to convert
+dict[,1]<-NULL
+
+if(identical(colnames(`_Skim_Car_2412421`)[2:611], dict$id)){
+  colnames(`_Skim_Car_2412421`)[2:611]<-dict$name}else{print("there is a problem with the indexes")}
+if(identical(as.character(`_Skim_Car_2412421`$id), dict$id)){
+  `_Skim_Car_2412421`$id<-dict$name}else{print("there is a problem with the indexes")}
+
+
+map1<-`_Skim_Car_2412421`
+
+map1[1:610,2:611][map1[1:610,2:611] != 0]<-1
+map1[is.na(map1)]<-0
+
+denom <- map1
+
+`_Skim_Car_2412421`[is.na(`_Skim_Car_2412421`)]<-0
+
+index <- `_Skim_Car_2412421`
+
+average <- index
+average[,2:611] <- index[,2:611]/denom[,2:611]
+
+average[is.na(average)]<-0
+print("the morning dynamic average of ivt for car is:")
+print(mean(unlist(average[,2:611][average[,2:611]!=0]))/3600)
+
+# row 98 (id 98) should be deleted as usual -> this way dimensions of the dataframe are correct
+if(sum(average[98,2:611])>0){print("why on heart 98 has trips?")}else{average<-average[-c(98), ]}
+write.csv(average, "~/PycharmProjects/AV/Data/AVGam.csv",row.names=FALSE)
+
+#list <- average %>% unlist(average[1:609,2:611])
+df<-as.data.frame(as.table(average[1:609,2:611][average[,2:611]!=0])) 
+#list <- subset(list, list > 0)
+df$group <- 0
+df[which(df[,2]>0.6*max(df[,2])),"group"]<-1
+png(filename="/home/angelo/PycharmProjects/AV/Data/cartt_am.png", width = 1600, height = 1200, pointsize=30)
+pl<-ggplot(df, aes(df[,1],df[,2]/60)) +
+  geom_point(size=2)+
+  geom_point(aes(color=group)) + theme(axis.text.x=element_blank(), axis.ticks.x=element_blank()) + theme(text = element_text(size = 25, family="Times_New_Roman")) + ylab("ivt [min]") + xlab("od") +
+  theme(legend.position="none")+
+  geom_hline(yintercept = mean(df[,2]/60), color="red")
+plot(pl)
+dev.off()
+
+
+dfsub<-df[which(df[,2]<7200),]
+print("the % of dynamic od pair with tt < 2h is:")
+print(nrow(dfsub)/nrow(df))
+png(filename="/home/angelo/PycharmProjects/AV/Data/cartt_am_subset.png", width = 1600, height = 1200, pointsize=30)
+pl<-ggplot(dfsub, aes(dfsub[,1],dfsub[,2]/60)) +
+  geom_point(size=2)+
+  geom_point(aes(color=group)) + theme(axis.text.x=element_blank(), axis.ticks.x=element_blank()) + theme(text = element_text(size = 25, family="Times_New_Roman")) + ylab("ivt [min]") + xlab("od") +
+  theme(legend.position="none") +
+  geom_hline(yintercept = mean(dfsub[,2]/60), color="red")
+plot(pl)
+
+
+
+dev.off()
+
+
+sink('/home/angelo/PycharmProjects/AV/Data/cartt_am.txt')
+cat(as.character(mean(unlist(average[,2:611][average[,2:611]!=0]))/3600))
+sink()
+
+png(filename="/home/angelo/PycharmProjects/AV/Data/ivtcountam_car.png", width = 1600, height = 1200, pointsize=30)
+hist(df[,2]/60, main='Distribution of ivt for background traffic', xlab='ivt [minutes]', col='steelblue',breaks=80, family = "serif", xlim = c(0,500))
+dev.off()
+
+################################################################################################################################################################################################################################################################
+
+library(tidyverse)
+library(tidyr)
+library(stringr)
+library(readxl)
+library(dplyr)
+library(data.table)
+rm(list=ls()) 
+
+
+`_Skim_Car_2411283` <- read.delim("~/PycharmProjects/AV/Data/_Skim_Car_2411283.csv")
+colnames(`_Skim_Car_2411283`)<-gsub("\\X","",as.character(colnames(`_Skim_Car_2411283`)))
+
+
+library(stringr)
+idtoname <- read.csv("~/PycharmProjects/AV/idtoname.csv", header=FALSE, stringsAsFactors=FALSE)
+dict<-data.frame(matrix(ncol = 1, nrow = ncol(idtoname)))
+dict[c('id', 'name')]<-str_split_fixed(idtoname[1,], ': ', 2) #mapping to convert
+dict[,1]<-NULL
+
+if(identical(colnames(`_Skim_Car_2411283`)[2:611], dict$id)){
+  colnames(`_Skim_Car_2411283`)[2:611]<-dict$name}else{print("there is a problem with the indexes")}
+if(identical(as.character(`_Skim_Car_2411283`$id), dict$id)){
+  `_Skim_Car_2411283`$id<-dict$name}else{print("there is a problem with the indexes")}
+
+
+map1<-`_Skim_Car_2411283`
+
+map1[1:610,2:611][map1[1:610,2:611] != 0]<-1
+map1[is.na(map1)]<-0
+
+denom <- map1
+
+
+
+`_Skim_Car_2411283`[is.na(`_Skim_Car_2411283`)]<-0
+
+
+index <- `_Skim_Car_2411283`
+
+average <- index
+average[,2:611] <- index[,2:611]/denom[,2:611]
+
+average[is.na(average)]<-0
+print("the afternoon dynamic average of ivt for car is:")
+print(mean(unlist(average[,2:611][average[,2:611]!=0]))/3600)
+
+# row 98 (id 98) should be deleted as usual -> this way dimensions of the dataframe are correct
+if(sum(average[98,2:611])>0){print("why on heart 98 has trips?")}else{average<-average[-c(98), ]}
+
+#list <- average %>% unlist(average[1:609,2:611])
+df<-as.data.frame(as.table(average[1:609,2:611][average[,2:611]!=0])) 
+#list <- subset(list, list > 0)
+df$group <- 0
+df[which(df[,2]>0.6*max(df[,2])),"group"]<-1
+png(filename="/home/angelo/PycharmProjects/AV/Data/cartt_pm.png", width = 1600, height = 1200, pointsize=30)
+#plot(list,xlab="cell no", ylab="tt [s]",)
+pl<-ggplot(df, aes(df[,1],df[,2]/60)) +
+  geom_point(size=2)+
+  geom_point(aes(color=group)) + theme(axis.text.x=element_blank(), axis.ticks.x=element_blank()) + theme(text = element_text(size = 25, family="Times_New_Roman")) + ylab("ivt [min]") + xlab("od") +
+  theme(legend.position="none")+
+  geom_hline(yintercept = mean(df[,2]/60), color="red")
+plot(pl)
+dev.off()
+
+dfsub<-df[which(df[,2]<7200),]
+print("the % of dynamic od pair with tt < 2h is:")
+print(nrow(dfsub)/nrow(df))
+png(filename="/home/angelo/PycharmProjects/AV/Data/cartt_pm_subset.png", width = 1600, height = 1200, pointsize=30)
+pl<-ggplot(dfsub, aes(dfsub[,1],dfsub[,2]/60)) +
+  geom_point(size=2)+
+  geom_point(aes(color=group)) + theme(axis.text.x=element_blank(), axis.ticks.x=element_blank()) + theme(text = element_text(size = 25, family="Times_New_Roman")) + ylab("ivt [min]") + xlab("od") +
+  theme(legend.position="none") +
+  geom_hline(yintercept = mean(dfsub[,2]/60), color="red")
+plot(pl)
+
+
+
+dev.off()
+
+
+sink('/home/angelo/PycharmProjects/AV/Data/cartt_pm.txt')
+cat(as.character(mean(unlist(average[,2:611][average[,2:611]!=0]))/3600))
+sink()
+write.csv(average, "~/PycharmProjects/AV/Data/AVGpm.csv",row.names=FALSE)
+
+
+png(filename="/home/angelo/PycharmProjects/AV/Data/ivtcountpm_car.png", width = 1600, height = 1200, pointsize=30)
+hist(df[,2]/60, main='Distribution of ivt for background traffic', xlab='ivt [minutes]', col='steelblue',breaks=80, family = "serif", xlim = c(0,500))
+dev.off()

@@ -1,0 +1,216 @@
+
+## average wt
+am_wt1 <- read.csv("~/PycharmProjects/AV/Data/av_wt_am.csv")
+am_wt1$X<-NULL
+
+
+am_wtavg<-am_wt1
+colnames(am_wtavg)<-c("origin","wt")
+am_wtavg$wt<-am_wtavg$wt/3600
+
+write.csv(am_wtavg, '~/PycharmProjects/AV/Data/am_wtavg.csv')
+print("the average aTaxi wt across replications for the morning is:")
+print(mean(as.numeric(am_wtavg$wt)))
+
+pm_wt1 <- read.csv("~/PycharmProjects/AV/Data/av_wt_pm.csv")
+pm_wt1$X<-NULL
+
+pm_wtavg<-pm_wt1
+colnames(pm_wtavg)<-c("origin","wt")
+pm_wtavg$wt<-pm_wtavg$wt/3600
+print("the average aTaxi wt across replications for the afternoon is:")
+print(mean(as.numeric(pm_wtavg$wt)))
+write.csv(pm_wtavg, '~/PycharmProjects/AV/Data/pm_wtavg.csv') 
+
+
+####################################################################################################################                                                       IVT
+###################################################################################################################
+
+library(stringr)
+ivt1<- read.csv("~/PycharmProjects/AV/Data/av_ivt_am.csv")
+ivt1$X<-NULL
+ivt1[c('origin', 'destination')] <- str_split_fixed(ivt1$od, '-', 2)
+colnames(ivt1)<-c("od","ivt","origin","destination")
+
+ivt<-ivt1
+
+ivt<-ivt[c("origin","destination","ivt")]
+colnames(ivt)<-c("origin","destination","avg")
+ivt$avg<-ivt$avg/3600
+print("the average aTaxi ivt across replications for the morning is:")
+print(mean(ivt$avg))
+write.csv(ivt, '~/PycharmProjects/AV/Data/am_ivtavg.csv') 
+
+
+ivt1<- read.csv("~/PycharmProjects/AV/Data/av_ivt_pm.csv")
+ivt1$X<-NULL
+ivt1[c('origin', 'destination')] <- str_split_fixed(ivt1$od, '-', 2)
+colnames(ivt1)<-c("od","ivt","origin","destination")
+ivt<-ivt1
+
+ivt<-ivt[c("origin","destination","ivt")]
+colnames(ivt)<-c("origin","destination","avg")
+ivt$avg<-ivt$avg/3600
+print("the average aTaxi ivt across replications for the afternoon is:")
+print(mean(ivt$avg))
+write.csv(ivt, '~/PycharmProjects/AV/Data/pm_ivtavg.csv') 
+
+
+
+## now do merge wt, ivt and amcosts
+## we use the am and pm cost table from IT4 (the latest iteration with the new luas and the improved baseline)
+beta_wt = 4.5 # pt waiting time beta + 2 as probably the users wait in the comfort of their home/origin -> due to limit in how we can model though, the beta waiting time for educational purpose increases of 0.2
+beta_ivt = 8.4 # ivt taxi as in das1
+
+amcost_start <- read.csv("/home/angelo/PycharmProjects/AV/Data/amcost_output.csv", header=FALSE) # from the python file to average car skims
+colnames(amcost_start)<-c("origin","destination","distance","car_cost_erp","car_ivt","pub_ivt","pub_walkt","pub_wtt","pub_cost","avg_transfer","pub_out")
+
+png(filename="/home/angelo/PycharmProjects/AV/Data/amcost_carivt.png", width = 1600, height = 1200, pointsize=30)
+hist(amcost_start[,"car_ivt"]*60, main='Distribution of ivt for background traffic - Static and dynamic', xlab='ivt [minutes]', col='steelblue',breaks=160, family = "serif", xlim = c(0,500), ylim = c(0,50000))
+dev.off()
+
+amcost_start$od<-paste(amcost_start$origin, amcost_start$destination, sep = "-")
+ivt<-read.csv("/home/angelo/PycharmProjects/AV/Data/am_ivtavg.csv")
+ivt$X<-NULL
+colnames(ivt)<-c("origin","destination","avgivt")
+ivt$od<-paste(ivt$origin, ivt$destination, sep = "-")
+amcost_start<-merge(amcost_start, ivt, by="od", all.x = TRUE)
+amcost_start$origin.y<-NULL
+amcost_start$destination.y<-NULL
+amcost_start$od<-NULL
+#where avgivt is NA, use the car one - before that you need to update the car tt -> you have a python script, run that first and then open the updated amcost in R
+png(filename="/home/angelo/PycharmProjects/AV/Data/amcost_avivt.png", width = 1600, height = 1200, pointsize=30)
+hist(amcost_start[,"avgivt"]*60, main='Distribution of ivt for av - Static and dynamic', xlab='ivt [minutes]', col='steelblue',breaks=160, family = "serif", xlim = c(0,200), ylim = c(0,500))
+dev.off()
+
+c1 <- rgb(173,216,230,max = 255, alpha = 80, names = "lt.blue")
+c2 <- rgb(255,192,203, max = 255, alpha = 80, names = "lt.pink")
+
+subset<-subset(amcost_start, is.na(amcost_start$avgivt)==FALSE)
+ax <- pretty(0:max(max(subset[,"car_ivt"]*60),max(subset[,"avgivt"]*60)), n = 350)
+ax[length(ax)+1]<-max(max(subset[,"car_ivt"]*60),max(subset[,"avgivt"]*60))+1
+png(filename="/home/angelo/PycharmProjects/AV/Data/tt_comparison_am.png", width = 1600, height = 1200, pointsize=30)
+a<-hist(subset[,"avgivt"]*60, main='Comparison of ivt for car and av', xlab='ivt [minutes]', breaks=ax, family = "serif", xlim=c(0,max(max(subset[,"car_ivt"]*60),max(subset[,"avgivt"]*60))))
+b<-hist(subset[,"car_ivt"]*60, main='Comparison of ivt for car and av', xlab='ivt [minutes]', breaks=ax, family = "serif", xlim = c(0,max(max(subset[,"car_ivt"]*60),max(subset[,"avgivt"]*60))))
+plot(a, col = c1, xlim=c(0,150), main='Comparison of ivt for car and av', xlab='ivt [minutes]')
+plot(b, col = c2, add = TRUE)
+dev.off()
+
+
+
+amcost_start[which(is.na(amcost_start$avgivt)),"avgivt"]<-amcost_start[which(is.na(amcost_start$avgivt)),"car_ivt"]
+colnames(amcost_start)<-c("origin","destination","distance","car_cost_erp","car_ivt","pub_ivt","pub_walkt","pub_wtt","pub_cost","avg_transfer","pub_out","avivt")
+
+
+
+am_wtavg <- read.csv("/home/angelo/PycharmProjects/AV/Data/am_wtavg.csv")
+am_wtavg$X<-NULL
+colnames(am_wtavg)[2]<-"avwt"
+amcost_start<-merge(amcost_start, am_wtavg, by="origin", all.x = TRUE)
+amcost_start<-amcost_start[
+  order( amcost_start[,1], amcost_start[,2] ),
+]
+amcost_start[which(is.na(amcost_start$avwt)),"avwt"]<-mean(amcost_start$avwt, na.rm=TRUE)
+amcost_start$pub_cost<-amcost_start$avivt*beta_ivt+amcost_start$avwt*beta_wt
+
+amcost_start$avivt<-NULL
+amcost_start$avwt<-NULL
+ 
+write.table(amcost_start, '/home/angelo/PycharmProjects/AV/Data/amcost_final.csv', col.names = FALSE, row.names = FALSE, sep = ",") 
+
+png(filename="/home/angelo/PycharmProjects/AV/Data/ampubcost.png", width = 1600, height = 1200, pointsize=30)
+hist(amcost_start[,"pub_cost"], main='Distribution of time cost for av', xlab='[values]', col='green',breaks=160, family = "serif", xlim = c(0,30))
+abline(v = mean(amcost_start[,"pub_cost"]), col = 'red', lwd=3) 
+text(x=mean(amcost_start[,"pub_cost"]), y=20000, str(mean(amcost_start[,"pub_cost"])))
+dev.off()
+sink('/home/angelo/PycharmProjects/AV/Data/am_pubcost_avg.txt')
+cat(as.character(mean(amcost_start[,"pub_cost"])))
+sink()
+
+
+
+
+
+
+
+
+
+
+beta_wt = 4.5 # pt waiting time beta + 2 as probably the users wait in the comfort of their home/origin -> due to limit in how we can model though, the beta waiting time for educational purpose increases of 0.2
+beta_ivt = 8.4 # ivt taxi as in das1
+
+pmcost_start <- read.csv("/home/angelo/PycharmProjects/AV/Data/pmcost_output.csv", header=FALSE)
+colnames(pmcost_start)<-c("origin","destination","distance","car_cost_erp","car_ivt","pub_ivt","pub_walkt","pub_wtt","pub_cost","avg_transfer","pub_out")
+
+
+png(filename="/home/angelo/PycharmProjects/AV/Data/pmcost_carivt.png", width = 1600, height = 1200, pointsize=30)
+hist(pmcost_start[,"car_ivt"]*60, main='Distribution of ivt for background traffic - Static and dynamic', xlab='ivt [minutes]', col='steelblue',breaks=160, family = "serif", xlim = c(0,500), ylim = c(0,50000))
+dev.off()
+
+pmcost_start$od<-paste(pmcost_start$origin, pmcost_start$destination, sep = "-")
+ivt<-read.csv("/home/angelo/PycharmProjects/AV/Data/pm_ivtavg.csv")
+ivt$X<-NULL
+colnames(ivt)<-c("origin","destination","avgivt")
+ivt$od<-paste(ivt$origin, ivt$destination, sep = "-")
+pmcost_start<-merge(pmcost_start, ivt, by="od", all.x = TRUE)
+pmcost_start$origin.y<-NULL
+pmcost_start$destination.y<-NULL
+pmcost_start$od<-NULL
+#where avgivt is NA, use the car one
+
+png(filename="/home/angelo/PycharmProjects/AV/Data/pmcost_avivt.png", width = 1600, height = 1200, pointsize=30)
+hist(pmcost_start[,"avgivt"]*60, main='Distribution of ivt for av - Static and dynamic', xlab='ivt [minutes]', col='steelblue',breaks=160, family = "serif", xlim = c(0,200), ylim = c(0,700))
+dev.off()
+
+c1 <- rgb(173,216,230,max = 255, alpha = 80, names = "lt.blue")
+c2 <- rgb(255,192,203, max = 255, alpha = 80, names = "lt.pink")
+
+subset<-subset(pmcost_start, is.na(pmcost_start$avgivt)==FALSE)
+ax <- pretty(0:max(max(subset[,"car_ivt"]*60),max(subset[,"avgivt"]*60)), n = 350)
+ax[length(ax)+1]<-max(max(subset[,"car_ivt"]*60),max(subset[,"avgivt"]*60))+1
+png(filename="/home/angelo/PycharmProjects/AV/Data/tt_comparison_pm.png", width = 1600, height = 1200, pointsize=30)
+a<-hist(subset[,"avgivt"]*60, main='Comparison of ivt for car and av', xlab='ivt [minutes]', breaks=ax, family = "serif", xlim=c(0,max(max(subset[,"car_ivt"]*60),max(subset[,"avgivt"]*60))))
+b<-hist(subset[,"car_ivt"]*60, main='Comparison of ivt for car and av', xlab='ivt [minutes]', breaks=ax, family = "serif", xlim = c(0,max(max(subset[,"car_ivt"]*60),max(subset[,"avgivt"]*60))))
+plot(a, col = c1, xlim=c(0,150), main='Comparison of ivt for car and av', xlab='ivt [minutes]')
+plot(b, col = c2, add = TRUE)
+dev.off()
+
+
+
+
+pmcost_start[which(is.na(pmcost_start$avgivt)),"avgivt"]<-pmcost_start[which(is.na(pmcost_start$avgivt)),"car_ivt"]
+colnames(pmcost_start)<-c("origin","destination","distance","car_cost_erp","car_ivt","pub_ivt","pub_walkt","pub_wtt","pub_cost","avg_transfer","pub_out","avivt")
+pm_wtavg <- read.csv("/home/angelo/PycharmProjects/AV/Data/pm_wtavg.csv")
+pm_wtavg$X<-NULL
+colnames(pm_wtavg)[2]<-"avwt"
+pmcost_start<-merge(pmcost_start, pm_wtavg, by="origin", all.x = TRUE)
+pmcost_start<-pmcost_start[
+  order( pmcost_start[,1], pmcost_start[,2] ),
+]
+pmcost_start[which(is.na(pmcost_start$avwt)),"avwt"]<-mean(pmcost_start$avwt, na.rm=TRUE)
+pmcost_start$pub_cost<-pmcost_start$avivt*beta_ivt+pmcost_start$avwt*beta_wt
+pmcost_start$avivt<-NULL
+pmcost_start$avwt<-NULL
+
+write.table(pmcost_start, '/home/angelo/PycharmProjects/AV/Data/pmcost_final.csv', col.names = FALSE, row.names = FALSE, sep = ",")
+
+png(filename="/home/angelo/PycharmProjects/AV/Data/pmpubcost.png", width = 1600, height = 1200, pointsize=30)
+hist(pmcost_start[,"pub_cost"], main='Distribution of time cost for av', xlab='[values]', col='green',breaks=160, family = "serif", xlim = c(0,30))
+abline(v = mean(pmcost_start[,"pub_cost"]), col = 'red', lwd=3) 
+text(x=mean(pmcost_start[,"pub_cost"]), y=20000, str(mean(pmcost_start[,"pub_cost"])))
+dev.off()
+sink('/home/angelo/PycharmProjects/AV/Data/pm_pubcost_avg.txt')
+cat(as.character(mean(pmcost_start[,"pub_cost"])))
+sink()
+
+
+
+
+
+#Prepare the opcost table with pub cost adapted to the new utility function (OP) - NO NEED TO ITERATE THIS
+
+#beta_ivt = 8.4 # ivt taxi as in das1
+#op <- read.csv("/home/angelo/Desktop/Tallinn/Model/json analysis/opcost.csv", header=FALSE)
+#colnames(op)<-c("origin","destination","distance","car_cost_erp","car_ivt","pub_ivt","pub_walkt","pub_wtt","pub_cost","avg_transfer","pub_out")
+#op$pub_cost<-op$car_ivt*beta_ivt
+#write.table(op, '/home/angelo/Scripting (Static)/New/AV case/opcost_av.csv', col.names = FALSE, row.names = FALSE, sep = ",")

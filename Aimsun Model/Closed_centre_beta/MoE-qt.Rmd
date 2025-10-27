@@ -1,0 +1,139 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
+
+Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Ctrl+Shift+Enter*. 
+
+```{r}
+library(tidyr)
+
+
+qt <- 6
+names <- c("ivt1","ivt2","ivt3","ivt4","ivt5","ivt6")
+names2 <- c("wt1","wt2","wt3","wt4","wt5","wt6")
+names3 <- c("data1","data2","data3","data4","data5","data6")
+names4 <- c("matrix1","matrix2","matrix3","matrix4","matrix5","matrix6")
+
+for(i in 1:qt){
+  string<-paste("/home/angelo/PycharmProjects/AV/Data/AM/",as.character(i+8),sep="")
+  setwd(string)
+  namefile = names[i]
+  string2 <-paste("~/PycharmProjects/AV/Data/AM/",as.character(i+8),"/am_ivtavg.csv", sep="")
+  assign(namefile, read.csv(string2))
+  
+  string3 <-paste("~/PycharmProjects/AV/Data/AM/",as.character(i+8),"/amcost_final.csv", sep="")
+  amcost <- read.csv(string3, header=FALSE)
+  colnames(amcost)<-c("origin","destination","distance","car_cost_erp","car_ivt","pub_ivt","pub_walkt","pub_wtt","pub_cost","avg_transfer","pub_out")
+  amcost$od<-paste(amcost$origin, amcost$destination, sep = "-")
+  y<-get(names[i])
+  y$od<-paste(y$origin, y$destination, sep = "-")
+  amcost<-merge(amcost, y, by="od", all.x = TRUE)
+  amcost<-amcost[,c("od","avg","origin.x","destination.x")]
+  amcost[which(is.na(amcost$avg)),"avg"]<-0
+  assign(names3[i],amcost)
+  }
+for(i in 1:qt){
+  string<-paste("/home/angelo/PycharmProjects/AV/Data/AM/",as.character(i+8),sep="")
+  setwd(string)
+  namefile = names2[i]
+  string2 <-paste("~/PycharmProjects/AV/Data/AM/",as.character(i+8),"/am_wtavg.csv", sep="")
+  assign(namefile, read.csv(string2))
+  
+  y<-get(names3[i])
+  z<-get(names2[i])
+  y<-merge(y,z, by.x = "origin.x", by.y="origin", all.x = TRUE)
+  y[which(y$avg==0),"wt"]<-0
+  assign(names3[i],y)
+}
+
+library(readr)
+AVG <- read_csv("/home/angelo/PycharmProjects/AV/Data/AM/12/AVG.csv")
+for(i in 1:length(names3)){
+  y<-get(names3[i])
+  y$tt<-(y$avg+y$wt)*3600 #AVG is in seconds, while avg and wt are in hours
+  y<-y[,c("origin.x","destination.x","tt")]
+  z<-spread(y, destination.x, tt)
+  delete<-which(z$origin.x %in% AVG$id == FALSE)
+  z<-z[-c(delete),]
+  delete<-which(colnames(z) %in% colnames(AVG) == FALSE)
+  z<-z[,-c(delete)]
+  assign(names4[i],z)
+  string <- paste("/home/angelo/PycharmProjects/AV/Data/AM/moeInputs/AVG", as.character(i),".csv",sep="")
+  write.csv(z,string)
+}
+
+
+
+
+for(i in 1:qt){
+  string<-paste("/home/angelo/PycharmProjects/AV/Data/PM/",as.character(i+8),sep="")
+  setwd(string)
+  namefile = names[i]
+  string2 <-paste("~/PycharmProjects/AV/Data/PM/",as.character(i+8),"/pm_ivtavg.csv", sep="")
+  assign(namefile, read.csv(string2))
+  
+  string3 <-paste("~/PycharmProjects/AV/Data/PM/",as.character(i+8),"/pmcost_final.csv", sep="")
+  pmcost <- read.csv(string3, header=FALSE)
+  colnames(pmcost)<-c("origin","destination","distance","car_cost_erp","car_ivt","pub_ivt","pub_walkt","pub_wtt","pub_cost","avg_transfer","pub_out")
+  pmcost$od<-paste(pmcost$origin, pmcost$destination, sep = "-")
+  y<-get(names[i])
+  y$od<-paste(y$origin, y$destination, sep = "-")
+  pmcost<-merge(pmcost, y, by="od", all.x = TRUE)
+  pmcost<-pmcost[,c("od","avg","origin.x","destination.x")]
+  pmcost[which(is.na(pmcost$avg)),"avg"]<-0
+  assign(names3[i],pmcost)
+  }
+for(i in 1:qt){
+  string<-paste("/home/angelo/PycharmProjects/AV/Data/PM/",as.character(i+8),sep="")
+  setwd(string)
+  namefile = names2[i]
+  string2 <-paste("~/PycharmProjects/AV/Data/PM/",as.character(i+8),"/pm_wtavg.csv", sep="")
+  assign(namefile, read.csv(string2))
+  
+  y<-get(names3[i])
+  z<-get(names2[i])
+  y<-merge(y,z, by.x = "origin.x", by.y="origin", all.x = TRUE)
+  y[which(y$avg==0),"wt"]<-0
+  assign(names3[i],y)
+}
+
+library(readr)
+AVG <- read_csv("/home/angelo/PycharmProjects/AV/Data/PM/12/AVG.csv")
+for(i in 1:length(names3)){
+  y<-get(names3[i])
+  y$tt<-(y$avg+y$wt)*3600 #AVG is in seconds, while avg and wt are in hours
+  y<-y[,c("origin.x","destination.x","tt")]
+  z<-spread(y, destination.x, tt)
+  delete<-which(z$origin.x %in% AVG$id == FALSE)
+  z<-z[-c(delete),]
+  delete<-which(colnames(z) %in% colnames(AVG) == FALSE)
+  z<-z[,-c(delete)]
+  assign(names4[i],z)
+  string <- paste("/home/angelo/PycharmProjects/AV/Data/PM/moeInputs/AVG", as.character(i),".csv",sep="")
+  write.csv(z,string)
+}
+
+
+
+
+
+setwd("/home/angelo/PycharmProjects/AV/Data/DAS/quantiles")
+files1 = list.files()
+for(i in 1:length(files1)-1){
+  string<-paste("/home/angelo/PycharmProjects/AV/Data/DAS/quantiles/",as.character(files1[i]),sep="")
+  string2<-paste("/home/angelo/PycharmProjects/AV/Data/DAS/moeInputs/",as.character(files1[i]),sep="")
+  file.copy(from=string,to=string2, copy.mode = TRUE)}
+
+library(reticulate)
+py_run_file("/home/angelo/PycharmProjects/AV/Scripts/MoE-qt.py")
+
+```
+
+Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Ctrl+Alt+I*.
+
+When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Ctrl+Shift+K* to preview the HTML file).
+
+The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.
