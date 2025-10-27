@@ -1,0 +1,7 @@
+{
+	"operators" : [
+		"operator_definition.json"
+	],
+	"requests" : "request.json",
+	"people_types" : "Coefficients_for_person-types.json"
+}

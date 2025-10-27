@@ -1,0 +1,30 @@
+{
+	"id" : "36734d2e-3466-11e9-b210-d663bd873d93",
+	"name" : "DRT-Taxi operator",
+	"type": "external",
+	"address": "localhost:45001",
+	"vehicle_type" : 154,
+	"fleet" : [
+		{
+			"id" : "e822981e-5a86-11e8-9c2d-fa7ae01bbebc",
+			"origin" : {
+				"object" : "GARAGE 1"
+			},
+			"name" : "VEH1"
+		},
+		{
+			"id" : "e822981e-5a86-11e8-9c2d-fa7ae01bbebd",
+			"origin" : {
+				"object" : "GARAGE 2"
+			},
+			"name" : "VEH2"
+		},
+		{
+			"id" : "e822981e-5a86-11e8-9c2d-fa7ae01bbebe",
+			"origin" : {
+				"object" : "GARAGE 3"
+			},
+			"name" : "VEH3"
+		}
+	]
+}

@@ -1,0 +1,123 @@
+{
+    "types" : [
+        {
+            "name" : "Type1CurrentModeCar",
+            "purposes" : [
+                {
+                    "purpose" : "WorkCommute",
+                    "coefficients" : 
+                        {
+                            "IVT" : 1.0,
+                            "WalkT" : 1.93,
+                            "WaitT" : 1.93,
+                            "MonetaryCost" : 5.95,
+                            "TransferPenalty" : 5.0,
+                            "Distance" : 0.0,
+                            "ASCCycle" : 1.5,
+                            "ASCPT" : 0.0,
+                            "ASCPri" : 0.75,
+                            "ASCWalk" : -1.0,
+                            "ASCDRT" : 0.75,
+                            "ScaleFactor": 0.0105
+                        }
+                },
+                {
+                    "purpose" : "Employers Business",
+                    "coefficients" :
+                        {
+                            "IVT" : 1.0,
+                            "WalkT" : 1.93,
+                            "WaitT" : 1.93,
+                            "MonetaryCost" : 1.77,
+                            "TransferPenalty" : 5.0,
+                            "Distance" : 0.0,
+                            "ASCCycle" : 1.5,
+                            "ASCPT" : 0.0,
+                            "ASCPri" : 0.75,
+                            "ASCWalk" : -1.0,
+                            "ASCDRT" : 0.75,
+                            "ScaleFactor": 0.0195
+                        }
+                },
+                {
+                    "purpose" : "Other",
+                    "coefficients" : 
+                        {
+                            "IVT" : 1.0,
+                            "WalkT" : 1.93,
+                            "WaitT" : 1.93,
+                            "MonetaryCost" : 8.46,
+                            "TransferPenalty" : 5.0,
+                            "Distance" : 0.0,
+                            "ASCCycle" : 1.5,
+                            "ASCPT" : 0.0,
+                            "ASCPri" : 0.75,
+                            "ASCWalk" : -1.0,
+                            "ASCDRT" : 0.75,
+                            "ScaleFactor": 0.00926
+                        }
+                }
+            ]
+        },
+        {
+            "name" : "Type2CurrentModeNonCar",
+            "purposes" :[
+                {
+                    "purpose" : "WorkCommute",
+                    "coefficients" : 
+                        {
+                            "IVT" : 1.0,
+                            "WalkT" : 1.93,
+                            "WaitT" : 1.93,
+                            "MonetaryCost" : 6.12,
+                            "TransferPenalty" : 5.0,
+                            "Distance" : 0.0,
+                            "ASCCycle" : 1.5,
+                            "ASCPT" : 0.0,
+                            "ASCPri" : 0.75,
+                            "ASCWalk" : -1.0,
+                            "ASCDRT" : 0.75,
+                            "ScaleFactor": 0.0105
+                        }
+                },
+                {
+                    "purpose" : "Employers Business",
+                    "coefficients" :
+                        {
+                            "IVT" : 1.0,
+                            "WalkT" : 1.93,
+                            "WaitT" : 1.93,
+                            "MonetaryCost" : 1.91,
+                            "TransferPenalty" : 5.0,
+                            "Distance" : 0.0,
+                            "ASCCycle" : 1.5,
+                            "ASCPT" : 0.0,
+                            "ASCPri" : 0.75,
+                            "ASCWalk" : -1.0,
+                            "ASCDRT" : 0.75,
+                            "ScaleFactor": 0.0195
+                        }
+ 
+                },
+                {
+                    "purpose" : "Other",
+                    "coefficients" :
+                        {
+                            "IVT" : 1.0,
+                            "WalkT" : 1.93,
+                            "WaitT" : 1.93,
+                            "MonetaryCost" : 8.46,
+                            "TransferPenalty" : 5.0,
+                            "Distance" : 0.0,
+                            "ASCCycle" : 1.5,
+                            "ASCPT" : 0.0,
+                            "ASCPri" : 0.75,
+                            "ASCWalk" : -1.0,
+                            "ASCDRT" : 0.75,
+                            "ScaleFactor": 0.00926
+                        }
+                }
+            ]
+        }
+    ]
+}
